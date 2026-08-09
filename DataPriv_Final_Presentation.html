@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DataPriv Enterprise: Privacy in a Multi-Cloud, AI-Everywhere World</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4F6FA;--bg2:#E8ECF4;--bg3:#DDE2EE;--bg4:#FFFFFF;
+  --w:#1A2035;--mt:#3D5080;--dm:#6B82A8;
+  --gr:#16A34A;--rd:#DC2626;--bl:#1D6FA8;
+  --am:#B45309;--pu:#6D28D9;--tl:#0D7377;--ac:#0A7A5A;
+  --bdr:rgba(30,50,100,0.15);
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--w);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px}
+.slides{width:100%;height:100%;position:relative}
+.slide{position:absolute;inset:0;display:none;flex-direction:column}
+.slide.on{display:flex}
+
+/* topbar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:var(--bg4);border-bottom:1px solid var(--bdr);flex-shrink:0;z-index:20;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.tb-logo{font-size:13px;font-weight:700;letter-spacing:.15em;color:var(--ac)}
+.tb-right{display:flex;align-items:center;gap:14px}
+.tb-timer{font-size:13px;font-family:monospace;color:var(--mt);font-weight:600}
+.tb-snum{font-size:13px;color:var(--mt)}
+.tb-sbtn{font-size:12px;border:1px solid var(--bdr);color:var(--mt);padding:4px 12px;border-radius:5px;cursor:pointer;background:var(--bg2);transition:all .2s;font-weight:500}
+.tb-sbtn:hover{color:var(--w);background:var(--bg3);border-color:var(--mt)}
+
+/* footer */
+.footer{display:flex;align-items:center;justify-content:space-between;padding:9px 24px;background:var(--bg4);border-top:1px solid var(--bdr);flex-shrink:0;box-shadow:0 -1px 4px rgba(0,0,0,0.04)}
+.dots{display:flex;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--bdr);cursor:pointer;transition:all .2s}
+.dot.on{background:var(--ac);width:20px;border-radius:4px}
+.navbtns{display:flex;gap:8px}
+.nbtn{padding:6px 18px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--bdr);background:var(--bg2);color:var(--mt);transition:all .2s}
+.nbtn:hover{color:var(--w);background:var(--mt);border-color:var(--mt)}
+.nbtn.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+.nbtn.pri:hover{background:#0a6b4e}
+.kh{font-size:11px;color:rgba(30,50,100,0.35)}
+.kbd{background:var(--bg3);border:1px solid var(--bdr);border-radius:3px;padding:0 5px;font-size:10px}
+
+/* script overlay */
+.sov{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.55);display:none;align-items:flex-end}
+.sov.open{display:flex}
+.spanel{width:100%;background:#fff;border-top:2px solid var(--ac);padding:20px 32px;max-height:44vh;overflow-y:auto;box-shadow:0 -4px 20px rgba(0,0,0,0.15)}
+.slbl{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--ac);margin-bottom:6px}
+.stiming{font-size:13px;color:var(--mt);margin-bottom:8px;font-weight:600}
+.stxt{font-size:15px;color:#1a2035;line-height:1.85;max-width:900px;white-space:pre-line}
+.sclose{float:right;background:none;border:none;color:var(--mt);cursor:pointer;font-size:18px;font-weight:700}
+
+/* content area */
+.content{flex:1;overflow:hidden;display:flex;flex-direction:column}
+
+/* ── SLIDE 1 ── */
+.s1b{flex:1;display:flex;align-items:center;justify-content:center;padding:36px;background:linear-gradient(135deg,#EEF2FB 0%,#F4F6FA 100%)}
+.s1i{max-width:860px;text-align:center}
+.s1tag{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--ac);margin-bottom:16px;text-transform:uppercase}
+.s1h{font-size:48px;font-weight:700;line-height:1.1;font-family:Georgia,serif;margin-bottom:14px;color:var(--w)}
+.s1sub{font-size:16px;color:var(--mt);line-height:1.75;max-width:660px;margin:0 auto 28px}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.chip{font-size:12px;padding:5px 16px;border-radius:20px;border:1.5px solid;font-weight:600;letter-spacing:.04em}
+
+/* ── SLIDE 2 ── */
+.s2b{flex:1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.s2l{padding:32px 28px;border-right:1px solid var(--bdr);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#EEF2FB 0%,#F4F6FA 100%)}
+.s2r{padding:24px;display:flex;flex-direction:column;gap:9px;justify-content:center}
+.s2tag{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--ac);margin-bottom:10px;text-transform:uppercase}
+.s2h{font-size:28px;font-weight:700;line-height:1.2;font-family:Georgia,serif;margin-bottom:14px;color:var(--w)}
+.s2body{font-size:14px;color:var(--mt);line-height:1.8}
+.pcard{background:var(--bg4);border-radius:8px;padding:14px 16px;border-left:4px solid;box-shadow:0 1px 4px rgba(0,0,0,0.07)}
+.pc-num{font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:4px;text-transform:uppercase}
+.pc-title{font-size:15px;font-weight:700;color:var(--w);margin-bottom:5px}
+.pc-body{font-size:12.5px;color:var(--mt);line-height:1.65}
+
+/* ── SLIDE 3: ARCHITECTURE ── */
+.s3b{flex:1;display:grid;grid-template-columns:1fr 320px;overflow:hidden}
+.arch-left{overflow-y:auto;padding:14px 18px;display:flex;flex-direction:column;align-items:center;gap:3px;background:var(--bg)}
+.arch-right{border-left:1px solid var(--bdr);padding:18px;overflow-y:auto;background:var(--bg4);display:flex;flex-direction:column}
+.arch-hint{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;text-align:center;color:var(--dm);gap:8px}
+.arch-hint p{font-size:14px;line-height:1.7;max-width:230px}
+
+/* flowchart */
+.fc-src-row{display:flex;gap:10px;width:100%;max-width:680px}
+.fc-src{flex:1;border:1.5px solid var(--bdr);border-radius:7px;padding:8px;text-align:center;background:var(--bg4);box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.fc-src-t{font-size:12px;font-weight:700;color:var(--w)}
+.fc-src-s{font-size:10px;color:var(--mt);margin-top:2px}
+.fc-arrow{display:flex;justify-content:center;color:var(--dm);font-size:15px;padding:2px 0;line-height:1;width:100%;max-width:680px}
+.fc-zone{border:1.5px dashed;border-radius:9px;padding:7px 9px;width:100%;max-width:680px}
+.fc-zlabel{font-size:10px;font-weight:700;letter-spacing:.12em;text-align:center;padding:2px 0 6px;text-transform:uppercase}
+.fc-box{border-radius:7px;padding:8px 11px;cursor:pointer;border:1.5px solid;transition:all .2s;background:var(--bg4);width:100%;text-align:left;margin-bottom:0;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.fc-box:hover{filter:brightness(0.95);transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,0.1)}
+.fc-box.sel{box-shadow:0 0 0 2.5px currentColor}
+.fc-bt{font-size:12px;font-weight:700;line-height:1.3;color:var(--w)}
+.fc-bs{font-size:10px;margin-top:2px;color:var(--mt);line-height:1.4}
+.fc-row2{display:flex;gap:6px;width:100%;max-width:680px}
+.fc-row2 .fc-box{flex:1}
+.col-en{border-color:#1D6FA8;background:#EEF6FC}
+.col-in{border-color:#6D28D9;background:#F3EFFE}
+.col-pr{border-color:#DC2626;background:#FEF2F2}
+.col-st{border-color:#0D7377;background:#ECFDF5}
+.col-ac{border-color:#B45309;background:#FFFBEB}
+.col-co{border-color:#16A34A;background:#F0FDF4}
+.zone-en{border-color:rgba(29,111,168,.45);color:#1D6FA8}
+.zone-in{border-color:rgba(109,40,217,.45);color:#6D28D9}
+.zone-pr{border-color:rgba(220,38,38,.45);color:#DC2626}
+.zone-st{border-color:rgba(13,115,119,.45);color:#0D7377}
+.zone-ac{border-color:rgba(180,83,9,.45);color:#B45309}
+.zone-co{border-color:rgba(22,163,74,.45);color:#16A34A}
+.cspm-wrap{border:1.5px dashed rgba(13,115,119,.45);border-radius:7px;padding:6px;width:100%;background:rgba(13,115,119,.04)}
+.cspm-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;color:#0D7377;text-align:center;padding:2px 0 5px}
+
+/* detail panel */
+.det-tag{font-size:11px;font-weight:700;letter-spacing:.12em;margin-bottom:6px;text-transform:uppercase}
+.det-title{font-size:19px;font-weight:700;line-height:1.2;margin-bottom:10px;color:var(--w)}
+.det-div{height:1px;background:var(--bdr);margin-bottom:12px}
+.det-sec{margin-bottom:12px}
+.det-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;margin-bottom:5px;color:var(--mt);text-transform:uppercase}
+.det-body{font-size:13px;color:var(--mt);line-height:1.7}
+.det-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.det-pill{font-size:10px;padding:3px 9px;border-radius:12px;border:1px solid var(--bdr);color:var(--mt);background:var(--bg3);font-weight:500}
+.det-solve{font-size:12px;font-weight:600;margin-top:10px;padding:8px 12px;border-radius:6px;background:rgba(10,122,90,0.08);color:var(--ac);border:1px solid rgba(10,122,90,0.25);line-height:1.6}
+
+/* ── SLIDE 4: CLASSIFICATION ── */
+.s4b{flex:1;overflow-y:auto;padding:18px 28px;display:flex;flex-direction:column;gap:12px}
+.risk-box{background:#FFFBEB;border:1px solid rgba(180,83,9,0.3);border-radius:9px;padding:14px 18px;border-left:4px solid var(--am)}
+.risk-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--am);margin-bottom:6px;text-transform:uppercase}
+.risk-body{font-size:14px;color:var(--mt);line-height:1.75}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mcard{background:var(--bg4);border-radius:9px;padding:16px;border-top:4px solid;box-shadow:0 1px 4px rgba(0,0,0,0.07)}
+.mnum{font-size:26px;font-weight:700;font-family:Georgia,serif;margin-bottom:6px}
+.mtitle{font-size:15px;font-weight:700;color:var(--w);margin-bottom:11px}
+.mbullets{display:flex;flex-direction:column;gap:7px}
+.mbullet{font-size:13px;color:var(--mt);line-height:1.6;padding-left:14px;position:relative}
+.mbullet::before{content:"›";position:absolute;left:0;font-weight:700;font-size:16px;line-height:1.3}
+.mfooter{font-size:11px;margin-top:11px;padding:7px 10px;border-radius:6px;font-style:italic;font-weight:500}
+.tier-section{background:var(--bg4);border-radius:9px;padding:16px;border:1px solid var(--bdr)}
+.tier-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--mt);margin-bottom:11px;text-transform:uppercase}
+.tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.tier-card{border-radius:7px;padding:12px 14px;border:1.5px solid}
+.tier-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.tier-rule{font-size:11.5px;color:var(--mt);line-height:1.5}
+.override-note{font-size:13px;color:var(--mt);line-height:1.7;margin-top:10px;padding:10px 14px;background:#FEF2F2;border-radius:7px;border-left:3px solid var(--rd)}
+
+/* ── SLIDE 5: ALIGNMENT ── */
+.s5b{flex:1;padding:18px 26px;overflow-y:auto}
+.map-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.mcard2{background:var(--bg4);border-radius:9px;padding:16px;border-left:4px solid;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.m2-num{font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:4px;text-transform:uppercase}
+.m2-title{font-size:15px;font-weight:700;color:var(--w);margin-bottom:9px}
+.m2-items{display:flex;flex-direction:column;gap:5px}
+.m2-item{font-size:13px;color:var(--mt);line-height:1.6;padding-left:16px;position:relative}
+.m2-item::before{content:"✓";position:absolute;left:0;color:var(--ac);font-weight:700;font-size:12px}
+.m2-demo{font-size:13px;color:#1558A0;padding-left:16px;position:relative;margin-top:3px;font-weight:600}
+.m2-demo::before{content:"→";position:absolute;left:0;color:#1558A0;font-weight:700}
+
+/* ── SLIDE 6: GLOSSARY ── */
+.s6b{flex:1;padding:16px 26px;overflow-y:auto}
+.gloss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.gi{background:var(--bg4);border-radius:7px;padding:11px 13px;border:1px solid var(--bdr)}
+.gi-term{font-size:14px;font-weight:700;color:var(--ac);margin-bottom:3px}
+.gi-full{font-size:11px;color:var(--mt);margin-bottom:4px;font-weight:500}
+.gi-def{font-size:12px;color:#4a5568;line-height:1.55}
+
+/* shared */
+.sh{padding:16px 24px 12px;flex-shrink:0;background:var(--bg4);border-bottom:1px solid var(--bdr)}
+.sh-tag{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--ac);margin-bottom:5px;text-transform:uppercase}
+.sh-h{font-size:22px;font-weight:700;font-family:Georgia,serif;color:var(--w)}
+.sh-sub{font-size:13px;color:var(--mt);margin-top:4px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;padding:7px 0 3px;width:100%;max-width:680px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mt);font-weight:500}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+@keyframes fin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.ani{animation:fin .25s ease forwards}
+</style>
+</head>
+<body>
+<div class="slides">
+
+<!-- ═══ SLIDE 1: TITLE ═══════════════════════════════════════════════ -->
+<div class="slide on" id="s1">
+  <div class="topbar">
+    <span class="tb-logo">DATAPRIV ENTERPRISE</span>
+    <div class="tb-right">
+      <span class="tb-timer" id="tmr">00:00</span>
+      <button class="tb-sbtn" onclick="showScript(0)">Script (S)</button>
+      <span class="tb-snum">1 / 6</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="s1b">
+      <div class="s1i ani">
+        <div class="s1tag">PROFESSIONAL SERVICES  |  DATA SECURITY</div>
+        <div class="s1h">Privacy in a Multi-Cloud,<br>AI-Everywhere World</div>
+        <div class="s1sub">A 12-layer data security architecture that automatically locates, classifies, protects, and audits sensitive client data across multiple cloud environments — with zero manual effort.</div>
+        <div class="chips">
+          <span class="chip" style="color:#1D6FA8;border-color:#1D6FA8;background:#EEF6FC">12 Security Layers</span>
+          <span class="chip" style="color:#16A34A;border-color:#16A34A;background:#F0FDF4">NZ Privacy Act 2020</span>
+          <span class="chip" style="color:#B45309;border-color:#B45309;background:#FFFBEB">AML/CFT Act</span>
+          <span class="chip" style="color:#6D28D9;border-color:#6D28D9;background:#F3EFFE">NZ AI Framework</span>
+          <span class="chip" style="color:#16A34A;border-color:#16A34A;background:#F0FDF4">GDPR Covered</span>
+          <span class="chip" style="color:#DC2626;border-color:#DC2626;background:#FEF2F2">5 Threat Scenarios</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="dots" id="d1"></div>
+    <div class="navbtns"><button class="nbtn" onclick="go(1)">Prev</button><button class="nbtn pri" onclick="go(2)">The Problem &rarr;</button></div>
+    <div class="kh"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> navigate &nbsp;<span class="kbd">S</span> script</div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 2: PROBLEM ═════════════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="topbar"><span class="tb-logo">DATAPRIV ENTERPRISE</span><div class="tb-right"><span class="tb-timer" id="tmr2">00:00</span><button class="tb-sbtn" onclick="showScript(1)">Script (S)</button><span class="tb-snum">2 / 6</span></div></div>
+  <div class="content">
+    <div class="s2b">
+      <div class="s2l">
+        <div class="s2tag">PROBLEM STATEMENT</div>
+        <div class="s2h">Privacy in a Multi-Cloud,<br>AI-Everywhere World</div>
+        <div class="s2body">You have client data scattered across cloud platforms, and AI tools running dozens of processes across different software environments.<br><br>How do you design a system to track where sensitive data lives, ensure it is protected, and demonstrate compliance to regulators without manually auditing everything?<br><br><strong style="color:rgba(255,255,255,0.85)">One question. Four separate failures waiting to happen.</strong></div>
+      </div>
+      <div class="s2r">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--ac);margin-bottom:6px">FOUR SUB-ISSUES</div>
+        <div class="pcard" style="border-color:var(--bl)"><div class="pc-num" style="color:var(--bl)">SUB-ISSUE 1</div><div class="pc-title">Find the data</div><div class="pc-body">Client information is spread across AWS, Azure, Google Cloud, and Snowflake. You need to know exactly where every piece of sensitive data lives, at all times.</div></div>
+        <div class="pcard" style="border-color:var(--rd)"><div class="pc-num" style="color:var(--rd)">SUB-ISSUE 2</div><div class="pc-title">Protect the data</div><div class="pc-body">No unauthorised person, hacker, careless employee, or AI tool should be able to read, steal, or tamper with it.</div></div>
+        <div class="pcard" style="border-color:var(--am)"><div class="pc-num" style="color:var(--am)">SUB-ISSUE 3</div><div class="pc-title">Prove it to regulators</div><div class="pc-body">When an auditor asks, you need receipts: who touched what, when, and why. No hand-waving. No manual log searches.</div></div>
+        <div class="pcard" style="border-color:var(--gr)"><div class="pc-num" style="color:var(--gr)">SUB-ISSUE 4</div><div class="pc-title">Do it all automatically</div><div class="pc-body">A firm cannot pay people to check spreadsheets every day. Humans miss things. The system must run itself.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="dots" id="d2"></div><div class="navbtns"><button class="nbtn" onclick="go(1)">Prev</button><button class="nbtn pri" onclick="go(3)">The Architecture &rarr;</button></div><div class="kh"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> navigate &nbsp;<span class="kbd">S</span> script</div></div>
+</div>
+
+<!-- ═══ SLIDE 3: ARCHITECTURE ════════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="topbar"><span class="tb-logo">DATAPRIV ENTERPRISE</span><div class="tb-right"><span class="tb-timer" id="tmr3">00:00</span><button class="tb-sbtn" onclick="showScript(2)">Script (S)</button><span class="tb-snum">3 / 6</span></div></div>
+  <div class="content">
+    <div class="sh"><div class="sh-tag">THE SOLUTION</div><div class="sh-h">12-Layer Security Architecture</div><div class="sh-sub">Click any layer to see its purpose and which sub-issue it solves</div></div>
+    <div class="s3b">
+      <div class="arch-left" id="archLeft">
+        <div class="fc-src-row">
+          <div class="fc-src"><div class="fc-src-t">Clients</div><div class="fc-src-s">Web portal &middot; API gateway</div></div>
+          <div class="fc-src"><div class="fc-src-t">Internal Departments</div><div class="fc-src-s">HR &middot; Finance &middot; Operations</div></div>
+        </div>
+        <div class="fc-arrow">&#8595;</div>
+        <div class="fc-zone zone-en" style="margin-bottom:3px">
+          <div class="fc-zlabel zone-en">ENTRY</div>
+          <div class="fc-box col-en" id="b1" onclick="det(1)"><div class="fc-bt">Layer 2: Security Desk at the Door</div><div class="fc-bs">WAF &middot; Input validation &middot; Quarantine zone &middot; Auto-block</div></div>
+        </div>
+        <div class="fc-arrow">&#8595;</div>
+        <div class="fc-zone zone-in" style="margin-bottom:3px">
+          <div class="fc-zlabel zone-in">INTELLIGENCE</div>
+          <div class="fc-box col-in" id="b2" onclick="det(2)" style="margin-bottom:5px"><div class="fc-bt">Layer 3: Auto-Classification Engine</div><div class="fc-bs">Column header match &middot; Regex scan &middot; NLP detection &middot; User tag override</div></div>
+          <div class="fc-box col-in" id="b3" onclick="det(3)"><div class="fc-bt">Layer 4: AI Engine + Tamper-proof Audit Trail</div><div class="fc-bs">24/7 monitoring &middot; Write-once log &middot; AI cannot modify its own record</div></div>
+        </div>
+        <div class="fc-arrow">&#8595;</div>
+        <div class="fc-zone zone-pr" style="margin-bottom:3px">
+          <div class="fc-zlabel" style="color:var(--rd)">PROTECTION</div>
+          <div class="fc-box col-pr" id="b4" onclick="det(4)" style="margin-bottom:5px"><div class="fc-bt">Layer 5: Real-Time Threat Blocking</div><div class="fc-bs">DLP &middot; Active response &middot; Under 30 seconds &middot; Automated</div></div>
+          <div class="cspm-wrap">
+            <div class="cspm-lbl">Layer 6: CSPM enforced across AWS &middot; Azure &middot; Google Cloud &middot; Snowflake</div>
+            <div class="fc-row2">
+              <div class="fc-box col-st" id="b5" onclick="det(5)"><div class="fc-bt" style="font-size:10px">Layer 7a: HR / AWS</div><div class="fc-bs">AES-256</div></div>
+              <div class="fc-box col-st" onclick="det(5)"><div class="fc-bt" style="font-size:10px">Layer 7b: Finance / Azure</div><div class="fc-bs">AES-256</div></div>
+              <div class="fc-box col-st" onclick="det(5)"><div class="fc-bt" style="font-size:10px">Layer 7c: Client / GCloud</div><div class="fc-bs">AES-256</div></div>
+              <div class="fc-box col-st" onclick="det(5)"><div class="fc-bt" style="font-size:10px">Layer 7d: Ops / Snowflake</div><div class="fc-bs">AES-256</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-arrow">&#8595;</div>
+        <div class="fc-zone zone-ac" style="margin-bottom:3px">
+          <div class="fc-zlabel zone-ac">CONTROLLED ACCESS</div>
+          <div class="fc-box col-ac" id="b6" onclick="det(6)" style="margin-bottom:5px"><div class="fc-bt">Layer 8: Prove Who You Are — Every Time</div><div class="fc-bs">Zero Trust IAM &middot; MFA &middot; RBAC &middot; Re-verified every 30 min &middot; Kill switch</div></div>
+          <div class="fc-row2">
+            <div class="fc-box col-ac" id="b7" onclick="det(7)"><div class="fc-bt">Layer 9: See Only What You Need</div><div class="fc-bs">Dynamic masking &middot; Scoped views &middot; Client portal</div></div>
+            <div class="fc-box col-co" id="b8" onclick="det(8)"><div class="fc-bt">Immutable Audit Log</div><div class="fc-bs">Write-once &middot; AI cannot modify</div></div>
+          </div>
+        </div>
+        <div class="fc-arrow">&#8595;</div>
+        <div class="fc-zone zone-co" style="margin-bottom:3px">
+          <div class="fc-zlabel zone-co">COMPLIANCE AND RECOVERY</div>
+          <div class="fc-box col-co" id="b9" onclick="det(9)" style="margin-bottom:5px"><div class="fc-bt">Layer 10: We Write the Report</div><div class="fc-bs">Log normalisation &middot; 4 cloud formats into 1 evidence pack &middot; NZ Privacy Act &middot; AML/CFT &middot; GDPR</div></div>
+          <div class="fc-row2" style="margin-bottom:5px">
+            <div class="fc-box col-co" id="b10" onclick="det(10)"><div class="fc-bt">Layer 11: Governance Cross-Check</div><div class="fc-bs">AI report vs independent audit log &middot; Weekly</div></div>
+            <div class="fc-box col-co" onclick="det(10)"><div class="fc-bt">Client Access</div><div class="fc-bs">Authenticated &middot; Scoped view only</div></div>
+          </div>
+          <div class="fc-box col-co" id="b11" onclick="det(11)" style="border-style:dashed"><div class="fc-bt">Layer 12: Emergency Plan + Human Training</div><div class="fc-bs">Backup &middot; DR &middot; RTO 4hr &middot; RPO 1hr &middot; Phishing simulations &middot; PAM (cross-cutting)</div></div>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-dot" style="background:var(--bl)"></span>Entry</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--pu)"></span>Intelligence</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--rd)"></span>Protection</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--tl)"></span>Storage</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--am)"></span>Access</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--gr)"></span>Compliance</span>
+        </div>
+      </div>
+      <div class="arch-right" id="archRight">
+        <div class="arch-hint" id="ahint"><div style="font-size:26px">&#8592;</div><p>Click any layer to see its purpose and which sub-issue it solves.</p></div>
+        <div id="adet" style="display:none;flex:1;overflow-y:auto"></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="dots" id="d3"></div><div class="navbtns"><button class="nbtn" onclick="go(2)">Prev</button><button class="nbtn pri" onclick="go(4)">Classification Engine &rarr;</button></div><div class="kh"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> navigate &nbsp;<span class="kbd">S</span> script</div></div>
+</div>
+
+<!-- ═══ SLIDE 4: CLASSIFICATION RULES ENGINE ════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="topbar"><span class="tb-logo">DATAPRIV ENTERPRISE</span><div class="tb-right"><span class="tb-timer" id="tmr4">00:00</span><button class="tb-sbtn" onclick="showScript(3)">Script (S)</button><span class="tb-snum">4 / 6</span></div></div>
+  <div class="content">
+    <div class="sh"><div class="sh-tag">LAYER 3 — AUTO-CLASSIFICATION ENGINE</div><div class="sh-h">How data is labelled automatically, without trusting users who may apply wrong tags</div></div>
+    <div class="s4b">
+      <div class="risk-box">
+        <div class="risk-lbl">THE RISK</div>
+        <div class="risk-body">A user uploads a file and marks it Internal because it looks like routine data. But it contains NHI numbers and medical conditions they did not notice. Without automatic detection, that data is stored without clinical-role restrictions, without masking, and without the retention rules required by the NZ Privacy Act. The obligation is silently broken.</div>
+      </div>
+      <div class="method-grid">
+        <div class="mcard" style="border-color:var(--bl)">
+          <div class="mnum" style="color:var(--bl)">01</div>
+          <div class="mtitle">Column Header Matching</div>
+          <div class="mbullets">
+            <div class="mbullet" style="color:var(--mt)">Column <code style="color:rgba(255,255,255,0.7)">nhi_number</code> flagged as HEALTH before any row is read</div>
+            <div class="mbullet" style="color:var(--mt)">Column <code style="color:rgba(255,255,255,0.7)">balance</code> flagged as FINANCIAL from the header alone</div>
+            <div class="mbullet" style="color:var(--mt)">Column <code style="color:rgba(255,255,255,0.7)">medical_condition</code> triggers HEALTH classification</div>
+            <div class="mbullet" style="color:var(--mt)">Column <code style="color:rgba(255,255,255,0.7)">ird_number</code> flagged as FINANCIAL (NZ IRD identifier)</div>
+          </div>
+          <div class="mfooter" style="background:rgba(56,189,248,.08);color:var(--bl)">Fastest layer. Fires on file structure before content is read.</div>
+        </div>
+        <div class="mcard" style="border-color:var(--pu)">
+          <div class="mnum" style="color:var(--pu)">02</div>
+          <div class="mtitle">Regex Pattern Scanning</div>
+          <div class="mbullets">
+            <div class="mbullet" style="color:var(--mt)">NHI format: <code style="color:rgba(255,255,255,0.7)">/[A-Z]{3}\d{4}/</code> matched on every row</div>
+            <div class="mbullet" style="color:var(--mt)">IRD format: <code style="color:rgba(255,255,255,0.7)">/\d{3}-\d{3}-\d{3}/</code> across all columns</div>
+            <div class="mbullet" style="color:var(--mt)">NZ phone: <code style="color:rgba(255,255,255,0.7)">/(\+64|0)[2-9]\d{7,9}/</code></div>
+            <div class="mbullet" style="color:var(--mt)">Account: <code style="color:rgba(255,255,255,0.7)">/\d{4}-\d{4}-\d{4}-\d{4}/</code></div>
+          </div>
+          <div class="mfooter" style="background:rgba(167,139,250,.08);color:var(--pu)">Catches sensitive data even in misnamed columns.</div>
+        </div>
+        <div class="mcard" style="border-color:var(--tl)">
+          <div class="mnum" style="color:var(--tl)">03</div>
+          <div class="mtitle">NLP Keyword Detection</div>
+          <div class="mbullets">
+            <div class="mbullet" style="color:var(--mt)">Medical condition dictionary: 3,200 clinical terms</div>
+            <div class="mbullet" style="color:var(--mt)">Person name entity recognition in free-text fields</div>
+            <div class="mbullet" style="color:var(--mt)">Location text geocoding for address fields</div>
+            <div class="mbullet" style="color:var(--mt)">Compensation keyword match for salary-adjacent values</div>
+          </div>
+          <div class="mfooter" style="background:rgba(45,212,191,.08);color:var(--tl)">Catches sensitive data in unstructured text with no fixed format.</div>
+        </div>
+      </div>
+      <div class="tier-section">
+        <div class="tier-lbl">TIER ASSIGNMENT RULES — highest detected type always wins</div>
+        <div class="tier-grid">
+          <div class="tier-card" style="border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.06)"><div class="tier-name" style="color:var(--gr)">PUBLIC</div><div class="tier-rule">No sensitive pattern detected in any column</div></div>
+          <div class="tier-card" style="border-color:rgba(56,189,248,.3);background:rgba(56,189,248,.06)"><div class="tier-name" style="color:var(--bl)">INTERNAL</div><div class="tier-rule">Operational data only — no PII, financial, or health</div></div>
+          <div class="tier-card" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.06)"><div class="tier-name" style="color:var(--am)">CONFIDENTIAL</div><div class="tier-rule">PII detected, or Financial detected (not combined)</div></div>
+          <div class="tier-card" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06)"><div class="tier-name" style="color:var(--rd)">RESTRICTED</div><div class="tier-rule">Health data detected, or PII and Financial combined</div></div>
+        </div>
+        <div class="override-note">User tag override: If a user labels data at a lower tier than what the engine detects, the system automatically upgrades the tier and logs the discrepancy to the immutable audit trail. Users cannot downgrade sensitive data accidentally or intentionally.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="dots" id="d4"></div><div class="navbtns"><button class="nbtn" onclick="go(3)">Prev</button><button class="nbtn pri" onclick="go(5)">Solution Alignment &rarr;</button></div><div class="kh"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> navigate &nbsp;<span class="kbd">S</span> script</div></div>
+</div>
+
+<!-- ═══ SLIDE 5: ALIGNMENT ══════════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="topbar"><span class="tb-logo">DATAPRIV ENTERPRISE</span><div class="tb-right"><span class="tb-timer" id="tmr5">00:00</span><button class="tb-sbtn" onclick="showScript(4)">Script (S)</button><span class="tb-snum">5 / 6</span></div></div>
+  <div class="content">
+    <div class="sh"><div class="sh-tag">SOLUTION ALIGNMENT</div><div class="sh-h">Every sub-issue is solved. Nothing is left open.</div><div class="sh-sub">Each of the four original challenges maps directly to specific layers, each demonstrable in the live demo.</div></div>
+    <div class="s5b" style="padding-top:0">
+      <div class="map-grid">
+        <div class="mcard2" style="border-color:var(--bl)"><div class="m2-num" style="color:var(--bl)">SUB-ISSUE 1: FIND THE DATA</div><div class="m2-title">Where does sensitive data live?</div><div class="m2-items"><div class="m2-item">Layer 3: Classification engine labels every record at entry</div><div class="m2-item">Layer 4: AI builds a searchable metadata catalogue across all 4 clouds</div><div class="m2-item">Layer 7: Data routed to the correct vault automatically — no manual sorting</div><div class="m2-demo">Demo: Upload CSV and watch Layer 3 classify every column in real time</div></div></div>
+        <div class="mcard2" style="border-color:var(--rd)"><div class="m2-num" style="color:var(--rd)">SUB-ISSUE 2: PROTECT THE DATA</div><div class="m2-title">No one reads it without permission</div><div class="m2-items"><div class="m2-item">Layer 5: DLP blocks data leaving before it leaves — not logged after</div><div class="m2-item">Layer 6: CSPM checks all 4 clouds daily against named security rules</div><div class="m2-item">Layer 7: AES-256 encryption, separate keys per domain</div><div class="m2-item">Layer 8: Zero Trust re-verified every 30 minutes, kill switch available</div><div class="m2-demo">Demo: Threat Center — run 5 attack scenarios and watch them blocked</div></div></div>
+        <div class="mcard2" style="border-color:var(--am)"><div class="m2-num" style="color:var(--am)">SUB-ISSUE 3: PROVE IT TO REGULATORS</div><div class="m2-title">Receipts, not promises</div><div class="m2-items"><div class="m2-item">Layer 4: Every AI decision in a tamper-proof write-once audit log</div><div class="m2-item">Layer 10: 4 cloud log formats normalised into 1 structured evidence pack</div><div class="m2-item">Layer 11: Governance cross-checks AI report vs independent audit weekly</div><div class="m2-demo">Demo: Regulator View — export a signed compliance report right now</div></div></div>
+        <div class="mcard2" style="border-color:var(--gr)"><div class="m2-num" style="color:var(--gr)">SUB-ISSUE 4: DO IT ALL AUTOMATICALLY</div><div class="m2-title">No humans checking spreadsheets</div><div class="m2-items"><div class="m2-item">Classification fires the moment data enters — no manual tagging</div><div class="m2-item">Threat response completes in under 30 seconds with no human action</div><div class="m2-item">Compliance reports auto-generated and mapped to specific laws</div><div class="m2-item">CSPM auto-remediates low-severity drift without any intervention</div><div class="m2-demo">Demo: Press Auto-play and watch the full pipeline run itself</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="dots" id="d5"></div><div class="navbtns"><button class="nbtn" onclick="go(4)">Prev</button><button class="nbtn pri" onclick="go(6)">Glossary &rarr;</button></div><div class="kh"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> navigate &nbsp;<span class="kbd">S</span> script</div></div>
+</div>
+
+<!-- ═══ SLIDE 6: GLOSSARY ════════════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="topbar"><span class="tb-logo">DATAPRIV ENTERPRISE</span><div class="tb-right"><button class="tb-sbtn" onclick="showScript(5)">Script (S)</button><span class="tb-snum">6 / 6</span></div></div>
+  <div class="content">
+    <div class="sh"><div class="sh-tag">REFERENCE</div><div class="sh-h">Acronym Glossary</div><div class="sh-sub">Every technical term used in this presentation, explained in plain English.</div></div>
+    <div class="s6b"><div class="gloss-grid" id="gg"></div></div>
+  </div>
+  <div class="footer"><div class="dots" id="d6"></div><div class="navbtns"><button class="nbtn" onclick="go(5)">Prev</button><button class="nbtn pri" onclick="go(1)" style="background:var(--bl);border-color:var(--bl)">Back to Start</button></div><div class="kh"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> navigate &nbsp;<span class="kbd">S</span> script</div></div>
+</div>
+
+</div><!-- end slides -->
+
+<!-- SCRIPT OVERLAY -->
+<div class="sov" id="sov">
+  <div class="spanel">
+    <button class="sclose" onclick="closeScript()">&#10005;</button>
+    <div class="slbl">SPEAKER SCRIPT</div>
+    <div class="stiming" id="stiming"></div>
+    <div class="stxt" id="stxt"></div>
+  </div>
+</div>
+
+<script>
+const TOTAL=6;
+let cur=1;
+
+const SCRIPTS=[
+  {t:"0:00 to 0:25 (25 seconds)",s:"Good morning. The problem we chose is Problem 2: Privacy in a Multi-Cloud, AI-Everywhere World.\n\nOur answer is DataPriv Enterprise: a 12-layer security architecture and a fully working prototype that solves every part of this challenge.\n\nI will walk you through it in just under 7 minutes."},
+  {t:"0:25 to 1:55 (90 seconds)",s:"The problem looks like one question, but it is actually four separate failures stacked on top of each other. If any one of them is weak, the whole system fails.\n\nSub-issue 1 is visibility. Client information is spread across AWS, Azure, Google Cloud, and Snowflake. You need to know exactly where every piece of sensitive data lives, at all times.\n\nSub-issue 2 is protection. Once you know where it is, no unauthorised person should be able to read it, steal it, or tamper with it. That includes hackers, careless employees, and the AI tools themselves.\n\nSub-issue 3 is proof. When a regulator or auditor comes asking, you need receipts. Who touched what, when, and why. No hand-waving.\n\nAnd sub-issue 4 is automation. A firm cannot pay people to check spreadsheets every day. Humans are slow, expensive, and miss things. The system must run itself.\n\nAll four must be solved. Our architecture addresses every one of them."},
+  {t:"1:55 to 4:00 (2 minutes 5 seconds)",s:"This is the architecture. Twelve layers, six zones, and every single one of them is live in our working demo.\n\nData comes in through two paths. Clients via the web portal, internal teams through their own systems. Both converge at Layer 2, the security desk at the door. The WAF blocks known attack patterns. Anything suspicious is quarantined and logged. Nothing proceeds without clearing every check.\n\nLayers 3 and 4 are the intelligence zone. Layer 3 is the auto-classification engine, and I will explain exactly how it works on the next slide. Layer 4 is the AI engine: monitoring all four cloud platforms 24/7, and every single AI decision is written to a tamper-proof log that even the AI cannot modify.\n\nLayers 5, 6, and 7 are protection. Layer 5 is real-time threat blocking: DLP stops data from leaving before it leaves, not after. A confirmed threat triggers an automatic sequence in under 30 seconds. Layer 6 is CSPM: daily inspection of all four cloud platforms against named rules. Layer 7 is four separate encrypted vaults, one per domain, each with its own encryption key.\n\nLayer 8 is Zero Trust: every request re-verified every 30 minutes. Layer 9 controls what you see through dynamic masking. Layers 10 and 11 handle compliance evidence and governance. Layer 12 is the safety net.\n\nClick any box on the left to see the detail for that layer."},
+  {t:"4:00 to 5:00 (60 seconds)",s:"Now the piece that ties everything together: how does the system know what label to assign without relying on a user who might get it wrong?\n\nThe risk is real. A user marks a file Internal because it looks routine. But it contains NHI numbers they did not notice. Without automatic detection, that data is stored with no clinical-role restrictions. A NZ Privacy Act obligation is silently broken.\n\nOur system uses three detection layers simultaneously.\n\nFirst: column header matching. Before reading a single row, it scans every column name. A column called nhi_number is immediately flagged as health data before any content is read.\n\nSecond: regex pattern scanning on actual cell content. The NHI format, the IRD number format, NZ phone numbers, bank account patterns — checked on every row. Even a misnamed column triggers the correct classification if the content matches.\n\nThird: NLP keyword detection. A clinical dictionary with 3,200 medical terms scans free-text fields. Person names and addresses are detected as entities.\n\nAnd critically: users cannot override this. If a file is labelled Internal but contains NHI numbers, the tier is automatically upgraded to Restricted and the discrepancy is logged."},
+  {t:"5:00 to 5:45 (45 seconds)",s:"Let me map this back to the four sub-issues directly.\n\nSub-issue 1, find the data: Layers 3 and 4. Every record is classified and catalogued automatically across all four clouds.\n\nSub-issue 2, protect the data: Layers 5, 6, 7, and 8. DLP stops exfiltration. CSPM catches drift. AES-256 makes stolen data unreadable. Zero Trust means a stolen password alone is not enough.\n\nSub-issue 3, prove it: Layers 4, 10, and 11. Every AI decision is logged. Four cloud log formats become one evidence package. Regulators receive a signed, structured report.\n\nSub-issue 4, automate it: The entire pipeline from classification to compliance report runs without human intervention."},
+  {t:"5:45 to 6:00 (15 seconds) then Q&A",s:"The glossary defines every technical term used today in plain English. If any acronym comes up in questions, the answer is on this slide.\n\nThat completes the presentation. I am ready for questions.\n\n--- COMMON QUESTIONS ---\n\nQ: Is this affordable for a mid-size firm?\nA: Every component here is a standard commercial product. This is a configuration and integration project, not a custom build. A phased rollout is realistic in 6 to 12 months.\n\nQ: What if the AI makes a classification error?\nA: Edge cases are escalated to a higher tier automatically. The system always errs cautious. Governance reviews the output weekly.\n\nQ: Can a user bypass classification?\nA: No. Rules fire automatically. If a user supplies a lower tag than detected, it is overridden and logged.\n\nQ: Does this cover the NZ Privacy Act specifically?\nA: Yes. Layer 10 maps evidence to specific IPPs. The governance team can produce a Privacy Commissioner report in seconds."}
+];
+
+const LAYERS={
+  1:{col:"var(--bl)",n:"2",name:"Security Desk at the Door",what:"A hardened entry point where all data is scanned before it can proceed to any other layer. Nothing passes without clearing every check.",does:"The WAF blocks known attack signatures. Input validation confirms correct format. Content scanning detects hidden threats. Suspicious data is quarantined: isolated, timestamped, and logged as forensic evidence. Repeat attackers are auto-blocked permanently.",why:"This is where attacks are stopped before they reach any sensitive system. The quarantine zone preserves evidence for investigations and regulatory inquiries.",solve:"Sub-issue 2 (Protect the data) and Sub-issue 4 (Automatic: repeat attackers blocked without human intervention).",pills:["WAF","Input validation","Quarantine zone","Auto-block","Forensic logging"]},
+  2:{col:"var(--pu)",n:"3",name:"Auto-Classification Engine",what:"Every piece of data receives a sensitivity tier the moment it passes the entry check: Public, Internal, Confidential, or Restricted. No human labelling required. Users cannot downgrade the tier.",does:"Three detection layers fire simultaneously: column header matching (flags sensitive columns before any row is read), regex pattern scanning (NHI format, IRD format, NZ phone, bank accounts on actual cell content), and NLP keyword detection (3,200 clinical terms, person name entities, location text). The highest detected type sets the tier automatically.",why:"You cannot protect what you have not identified. The classification tier then controls everything downstream: which vault stores it, which encryption key is used, who can access it, and which compliance laws apply. User-supplied tags that are too low are automatically upgraded.",solve:"Sub-issue 1 (Find the data: every record labelled and catalogued) and Sub-issue 4 (Automatic: zero human labelling required).",pills:["Column header match","Regex pattern scan","NLP detection","NHI: /[A-Z]{3}\\d{4}/","IRD: /\\d{3}-\\d{3}-\\d{3}/","User tag override","4 tiers","Policy trigger"]},
+  3:{col:"var(--pu)",n:"4",name:"AI Engine and Tamper-proof Audit Trail",what:"One AI engine monitors all activity across all four cloud platforms simultaneously. Every AI decision is written to a separate, write-once log that the AI itself cannot modify.",does:"The AI detects anomalies: bulk downloads, unusual access hours, new-country logins, cross-domain reads. Every AI action generates a permanent log entry containing what data was processed, what rule applied, what decision was made, the confidence score, and the timestamp.",why:"The AI has zero access rights. It can only observe and alert. Even if the AI were compromised, the independent log survives intact. Regulators can request every AI decision about a specific client and receive a signed, timestamped evidence package.",solve:"Sub-issue 3 (Prove it: AI decisions are fully auditable) and Sub-issue 4 (Automatic: 24/7 monitoring without human staff watching screens).",pills:["24/7 monitoring","Write-once log","Zero access rights","Anomaly detection","Regulator-ready evidence"]},
+  4:{col:"var(--rd)",n:"5",name:"Real-Time Threat Blocking",what:"DLP rules fire per classification tier and block unauthorised data movement before it completes. Confirmed threats trigger an automated response sequence in under 30 seconds.",does:"A Restricted file cannot be emailed externally. A Confidential record cannot be bulk-exported above a threshold. When a threat is confirmed: session cut off, source IP blocked at WAF, affected vault locked to read-only, SOC alerted with full context. No human button press required.",why:"The alternative is detecting a breach after data has already left. This layer prevents the breach from completing. The difference between logging that data left and stopping it before it does.",solve:"Sub-issue 2 (Protect: active blocking before data leaves) and Sub-issue 4 (Automatic: response fires without human intervention).",pills:["DLP per tier","Auto-block export","Session revocation","IP blocking","30-second response","SOC alert"]},
+  5:{col:"var(--tl)",n:"6+7",name:"CSPM and Four Encrypted Vaults",what:"CSPM checks all four cloud platforms daily against named security rules. Data is stored in four separate AES-256 encrypted vaults, one per business domain, each with its own encryption key.",does:"AWS: no public S3 buckets, SSE-KMS encryption, no IAM users without MFA. Azure: no public blob access, Defender for Cloud active. GCP: no public buckets, VPC flow logs enabled. Snowflake: IP-restricted access, no SYSADMIN on service accounts. Low-severity drift is auto-remediated. High-severity triggers immediate lockdown.",why:"Multi-cloud environments fail because different platforms have different defaults. CSPM eliminates inconsistency. Domain isolation limits the blast radius of any breach to one vault. The other three keep running completely unaffected.",solve:"Sub-issue 2 (Protect: encryption plus CSPM) and Sub-issue 1 (Find: classification routes data to the correct vault automatically).",pills:["AWS SSE-KMS","Azure Defender","GCP VPC logs","Snowflake IP policy","AES-256 per domain","Auto-remediation"]},
+  6:{col:"var(--am)",n:"8",name:"Zero Trust Identity and Access",what:"Every access request must simultaneously verify identity, job role, and device health. No one is trusted by default. Sessions re-verify every 30 minutes.",does:"MFA via Okta. Role checked against the classification label: a Finance team member cannot open Restricted health records regardless of seniority. Device health checked. Tokens expire after 1 hour. Governance holds a kill switch: any session revoked in seconds.",why:"A stolen password alone is not enough to get in. The classification tier sets the access ceiling and Zero Trust enforces it on every request, not just at login.",solve:"Sub-issue 2 (Protect: multi-factor access control) and Sub-issue 4 (Automatic: re-verification every 30 minutes without user action).",pills:["MFA via Okta","RBAC by tier","Device health check","30-min re-auth","Kill switch","1-hour token expiry"]},
+  7:{col:"var(--am)",n:"9",name:"Secure Access and Data Masking",what:"Authorised users see only the fields their role requires. Sensitive data is masked by default. Every access is permanently logged.",does:"Masking is driven automatically by the classification label. Account numbers appear as ****1234 unless the role requires the full number. Client portal has rate limiting, MFA, and behavioural anomaly detection. Every view, export, and API call is logged and feeds directly into the compliance evidence at Layer 10.",why:"Being authorised to enter the system does not mean every field needs to be visible. Masking protects clients even from well-meaning internal staff. Every access is logged and auditable.",solve:"Sub-issue 2 (Protect: masking limits exposure) and Sub-issue 3 (Prove: every access is permanently recorded).",pills:["Dynamic masking","Classification-driven","Client portal","Rate limiting","Anomaly detection","Full access log"]},
+  8:{col:"var(--gr)",n:"10",name:"Log Normalisation and Unified Evidence",what:"Logs from all four cloud platforms are translated into a common format and assembled into structured compliance evidence packages mapped to specific legal obligations.",does:"Splunk ingests AWS CloudTrail, Azure Monitor, GCP Audit Logs, and Snowflake Query History. Each is translated into Common Event Format continuously — not in nightly batches. Evidence packages are then mapped to specific laws: NZ Privacy Act s.113, AML/CFT Act s.48, GDPR Article 30.",why:"Without this layer, producing a compliance report means manually translating four incompatible record systems — weeks of work. With it, a regulator receives a signed, timestamped, professionally structured evidence package rather than a pile of raw log files.",solve:"Sub-issue 3 (Prove it: structured evidence for regulators) and Sub-issue 4 (Automatic: no manual audit work required).",pills:["Splunk normalisation","Common Event Format","NZ Privacy Act","AML/CFT","GDPR","Continuous (not batch)"]},
+  9:{col:"var(--gr)",n:"11",name:"Governance and Independent Oversight",what:"Governance reads both the AI reports and the independent audit trail every week and compares them. Any discrepancy is a red flag that triggers an immediate investigation.",does:"Governance uses the normalised log store from Layer 10, which is completely independent from the AI's own reports. If the AI says X happened but the audit log says something different, a security review is triggered immediately. All regulatory submissions are signed off by governance and that sign-off is itself logged.",why:"The AI cannot audit itself. You need an independent check, just as companies need external auditors. The independence between the AI output and the tamper-proof audit trail is what makes the governance function credible.",solve:"Sub-issue 3 (Prove it: independent oversight of AI decisions) and Sub-issue 4 (Automatic: compliance reports are signed and submitted without manual log searches).",pills:["Independent cross-check","Weekly review","AI vs audit trail","Regulatory sign-off","NZ Privacy Act","AML/CFT","GDPR"]},
+  10:{col:"var(--gr)",n:"12",name:"Emergency Plan and Human Training",what:"A tested recovery plan for when technology fails, and regular training so that people do not become the weakest link. 85% of breaches start with human error.",does:"RTO: back online within 4 hours. RPO: maximum 1 hour of data loss. Backups replicate continuously to geographically separate regions. Quarterly security training for all staff. Unannounced phishing simulations with results tracked per department. PAM for admin accounts: all privileged actions require a second approval and are fully logged.",why:"Technology can and does fail. Fast recovery is a measurable, contractual commitment. And because human error causes 85% of breaches, treating people as an engineering constraint rather than an HR problem is essential.",solve:"All four sub-issues: the safety net that assumes everything above it may eventually fail.",pills:["RTO: 4 hours","RPO: 1 hour","Multi-region backups","Quarterly training","Phishing simulations","PAM for admins"]}
+};
+
+const GLOSSARY=[
+  {term:"AES-256",full:"Advanced Encryption Standard (256-bit)",def:"Military-grade encryption. Stolen data is unreadable without the decryption key."},
+  {term:"AML/CFT",full:"Anti-Money Laundering and Countering Financing of Terrorism",def:"NZ law requiring firms to monitor transactions and report suspicious activity."},
+  {term:"API",full:"Application Programming Interface",def:"A connection allowing two software systems to exchange data."},
+  {term:"CSPM",full:"Cloud Security Posture Management",def:"A tool that checks cloud platforms against security rules daily and fixes misconfigurations."},
+  {term:"DLP",full:"Data Loss Prevention",def:"Technology that blocks sensitive data from leaving a system without authorisation, before it leaves."},
+  {term:"DR",full:"Disaster Recovery",def:"The plan to restore systems after a failure. Our RTO is 4 hours, RPO is 1 hour."},
+  {term:"FPE",full:"Format-Preserving Encryption",def:"Encrypts data while keeping its original format (a 16-digit number stays 16 digits)."},
+  {term:"GDPR",full:"General Data Protection Regulation",def:"EU data protection law. Applies to any firm handling EU residents' data, regardless of location."},
+  {term:"IAM",full:"Identity and Access Management",def:"The system controlling who can access what and under what conditions."},
+  {term:"IPP",full:"Information Privacy Principle",def:"One of 13 rules in the NZ Privacy Act 2020 governing how personal information must be handled."},
+  {term:"IRD",full:"Inland Revenue Department number",def:"NZ taxpayer identifier. Classified as Financial PII by the classification engine."},
+  {term:"MFA",full:"Multi-Factor Authentication",def:"Requiring two or more forms of verification: password plus a phone code."},
+  {term:"NHI",full:"National Health Index number",def:"NZ unique health identifier. Classified as Health (Restricted tier) by the classification engine."},
+  {term:"NLP",full:"Natural Language Processing",def:"AI technology that understands and analyses human language to detect entities and keywords."},
+  {term:"PAM",full:"Privileged Access Management",def:"Extra controls for admin accounts: approval required, all actions logged, time-limited."},
+  {term:"PII",full:"Personally Identifiable Information",def:"Any data identifying a specific individual: name, email, phone, date of birth, address, NHI, IRD."},
+  {term:"RBAC",full:"Role-Based Access Control",def:"Access permissions are tied to job roles, not individual people."},
+  {term:"RPO",full:"Recovery Point Objective",def:"Maximum data loss allowed. Ours is 1 hour: backups replicate continuously."},
+  {term:"RTO",full:"Recovery Time Objective",def:"Maximum time to restore systems after failure. Ours is 4 hours."},
+  {term:"SOC",full:"Security Operations Centre",def:"A team monitoring alerts 24/7, investigating threats, and coordinating responses."},
+  {term:"TLS",full:"Transport Layer Security",def:"Encrypts data in transit between systems. The same technology as the browser padlock icon."},
+  {term:"WAF",full:"Web Application Firewall",def:"Blocks known attack patterns at the entry point before they reach any internal system."},
+  {term:"Zero Trust",full:"Zero Trust Security Model",def:"Nobody trusted by default. Every access request re-verified on identity, role, and device, every time."}
+];
+
+// ── Nav ──────────────────────────────────────────────────────────────────────
+function go(n){
+  if(n<1||n>TOTAL)return;
+  document.getElementById('s'+cur)?.classList.remove('on');
+  cur=n;
+  document.getElementById('s'+cur)?.classList.add('on');
+  updateDots();
+}
+function updateDots(){
+  for(let i=1;i<=TOTAL;i++){
+    const c=document.getElementById('d'+i);if(!c)continue;
+    c.innerHTML='';
+    for(let j=1;j<=TOTAL;j++){
+      const d=document.createElement('div');
+      d.className='dot'+(j===cur?' on':'');
+      d.onclick=()=>go(j);c.appendChild(d);
+    }
+  }
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(cur+1);}
+  if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1);}
+  if(e.key==='s'||e.key==='S') showScript(cur-1);
+});
+
+// ── Timer ────────────────────────────────────────────────────────────────────
+const t0=Date.now();
+setInterval(()=>{
+  const e=Math.floor((Date.now()-t0)/1000);
+  const s=`${String(Math.floor(e/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+  ['tmr','tmr2','tmr3','tmr4','tmr5'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=s;});
+},1000);
+
+// ── Script ───────────────────────────────────────────────────────────────────
+function showScript(idx){
+  const sc=SCRIPTS[idx]||SCRIPTS[cur-1];
+  document.getElementById('stiming').textContent=sc.t;
+  document.getElementById('stxt').textContent=sc.s;
+  document.getElementById('sov').classList.add('open');
+}
+function closeScript(){document.getElementById('sov').classList.remove('open');}
+
+// ── Architecture detail ──────────────────────────────────────────────────────
+function det(idx){
+  const l=LAYERS[idx];if(!l)return;
+  document.querySelectorAll('.fc-box').forEach(b=>b.classList.remove('sel'));
+  const boxEl=document.getElementById('b'+idx);if(boxEl)boxEl.classList.add('sel');
+  document.getElementById('ahint').style.display='none';
+  const adet=document.getElementById('adet');
+  adet.style.display='block';
+  adet.innerHTML=`
+    <div class="det-tag" style="color:${l.col}">LAYER ${l.n}</div>
+    <div class="det-title">${l.name}</div>
+    <div class="det-div"></div>
+    <div class="det-sec"><div class="det-lbl">WHAT IS IT?</div><div class="det-body">${l.what}</div></div>
+    <div class="det-sec"><div class="det-lbl">WHAT DOES IT DO?</div><div class="det-body">${l.does}</div></div>
+    <div class="det-sec"><div class="det-lbl">WHY DO WE NEED IT?</div><div class="det-body">${l.why}</div></div>
+    <div class="det-solve"><strong style="color:${l.col}">SOLVES:</strong> ${l.solve}</div>
+    <div class="det-pills">${l.pills.map(p=>`<span class="det-pill">${p}</span>`).join('')}</div>
+  `;
+  adet.classList.add('ani');void adet.offsetWidth;adet.classList.remove('ani');adet.classList.add('ani');
+}
+
+// ── Glossary ─────────────────────────────────────────────────────────────────
+function buildGloss(){
+  document.getElementById('gg').innerHTML=GLOSSARY.map(g=>`
+    <div class="gi">
+      <div class="gi-term">${g.term}</div>
+      <div class="gi-full">${g.full}</div>
+      <div class="gi-def">${g.def}</div>
+    </div>`).join('');
+}
+
+updateDots();buildGloss();
+</script>
+</body>
+</html>

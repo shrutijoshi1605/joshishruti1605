@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shruti Joshi | Enterprise Application Support | Wellington, NZ</title>
+<meta name="description" content="Shruti Joshi, Enterprise Application Support Specialist, Technical Consultant and Project Coordinator based in Wellington, New Zealand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* WELLINGTON STONE PALETTE */
+:root {
+  --charcoal: #2d3748;
+  --charcoal-dark: #1a202c;
+  --rose: #b5737a;
+  --rose-light: #f5e8e9;
+  --rose-mid: #d4a0a5;
+  --warm-grey: #718096;
+  --linen: #f7f3ee;
+  --linen-dark: #ede8e1;
+  --white: #ffffff;
+  --text: #2d3748;
+  --border: rgba(45,55,72,0.1);
+  --shadow: 0 4px 24px rgba(45,55,72,0.08);
+  --shadow-md: 0 8px 40px rgba(45,55,72,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* OPEN TO WORK BANNER */
+.otw-banner{
+  background:var(--charcoal-dark);
+  text-align:center;padding:10px 20px;
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;
+  color:rgba(255,255,255,0.7);
+  display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;
+}
+.otw-dot{width:7px;height:7px;border-radius:50%;background:#68d391;animation:pulse 2s infinite;flex-shrink:0}
+.otw-text{color:var(--rose-mid);font-weight:600}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);height:54px;
+  display:flex;align-items:center;
+}
+.nav-inner{
+  max-width:1100px;margin:0 auto;width:100%;
+  padding:0 32px;display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{font-family:'DM Serif Display',serif;font-size:17px;color:var(--charcoal);text-decoration:none}
+.nav-brand span{color:var(--rose)}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;color:var(--warm-grey);text-decoration:none;padding:6px 11px;border-radius:5px;transition:all .2s}
+.nav-links a:hover{color:var(--charcoal);background:var(--linen)}
+.nav-cta{background:var(--charcoal)!important;color:var(--white)!important;padding:7px 16px!important}
+.nav-cta:hover{background:var(--rose)!important}
+.nav-dl{background:var(--rose)!important;color:var(--white)!important;padding:7px 16px!important;border-radius:5px;font-size:12px;font-weight:600;text-decoration:none;transition:all .2s}
+.nav-dl:hover{background:var(--rose-mid)!important;transform:translateY(-1px)}
+
+/* HERO */
+#hero{display:grid;grid-template-columns:1fr 1fr;min-height:92vh}
+.hero-left{background:var(--charcoal-dark);display:flex;align-items:center;padding:72px 60px}
+.hero-left-inner{max-width:500px}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;
+  color:var(--rose-mid);text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--rose-mid)}
+.hero-name{
+  font-family:'DM Serif Display',serif;
+  font-size:56px;line-height:1.05;color:var(--white);margin-bottom:14px;
+}
+.hero-name em{color:var(--rose-mid);font-style:normal;display:block}
+.hero-roles{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;
+  color:rgba(255,255,255,0.45);margin-bottom:18px;text-transform:uppercase;
+}
+.hero-tagline{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:16px;font-weight:300}
+.hero-tagline strong{color:rgba(255,255,255,0.88);font-weight:500}
+.hero-chance{
+  font-size:13px;color:var(--rose-mid);font-style:italic;
+  margin-bottom:32px;border-left:2px solid var(--rose);padding-left:14px;
+  line-height:1.6;
+}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.btn-primary{background:var(--rose);color:var(--white);padding:11px 22px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--rose-mid);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.75);padding:11px 22px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;transition:all .25s;border:1px solid rgba(255,255,255,0.18)}
+.btn-ghost:hover{border-color:var(--rose-mid);color:var(--rose-mid)}
+
+.hero-right{background:var(--linen);display:flex;align-items:center;justify-content:center;padding:72px 48px;flex-direction:column;gap:28px}
+
+/* PHOTO AND AWARDS */
+.photo-awards-wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.hero-photo{
+  width:180px;height:180px;border-radius:50%;
+  background:var(--linen-dark);border:4px solid var(--rose-mid);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  color:var(--warm-grey);font-size:12px;text-align:center;line-height:1.5;
+  position:relative;
+}
+.awards-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:320px}
+.award-badge{
+  display:flex;align-items:center;gap:6px;
+  background:var(--white);border:1px solid var(--border);border-radius:24px;
+  padding:6px 12px;font-size:11px;font-weight:600;color:var(--charcoal);
+  box-shadow:var(--shadow);transition:all .2s;
+}
+.award-badge:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.award-icon{font-size:14px}
+.award-sub{font-size:9px;color:var(--warm-grey);font-weight:400;display:block;font-family:'DM Mono',monospace;letter-spacing:.04em}
+.awards-wreath-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%;max-width:340px}
+.wreath-award{background:var(--charcoal-dark);border-radius:10px;padding:12px;text-align:center;border:1px solid rgba(201,169,110,0.2);transition:all .2s}
+.wreath-award:hover{border-color:rgba(201,169,110,0.5);transform:translateY(-2px)}
+.wreath-svg-wrap{width:100%;max-width:120px;margin:0 auto}
+.wreath-svg{width:100%;height:auto}
+.wreath-label{font-size:11px;font-weight:600;color:#c9a96e;margin-top:4px;line-height:1.3}
+.wreath-sub{font-size:9px;color:rgba(255,255,255,0.4);margin-top:2px;line-height:1.4;font-family:'DM Mono',monospace}
+
+/* STATS */
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:300px}
+.stat-card{background:var(--white);border-radius:10px;padding:18px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.stat-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--charcoal);line-height:1}
+.stat-label{font-size:10px;color:var(--warm-grey);margin-top:4px;line-height:1.4;font-family:'DM Mono',monospace;letter-spacing:.04em}
+
+/* SECTION SHELL */
+section{padding:80px 32px}
+.sec-inner{max-width:1100px;margin:0 auto}
+.sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--rose);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.sec-label::before{content:'';width:18px;height:1px;background:var(--rose)}
+.sec-title{font-family:'DM Serif Display',serif;font-size:36px;color:var(--charcoal);margin-bottom:6px;line-height:1.15}
+.sec-sub{font-size:14px;color:var(--warm-grey);max-width:540px;margin-bottom:44px;line-height:1.8}
+.rule{width:32px;height:2px;background:var(--rose);border-radius:2px;margin:12px 0 40px}
+
+/* MY CHAPTER */
+#story{background:var(--linen)}
+.story-wrap{display:grid;grid-template-columns:3fr 2fr;gap:60px;align-items:start}
+.story-text p{font-size:14px;color:var(--text);line-height:1.9;margin-bottom:16px}
+.story-text p:last-child{margin-bottom:0}
+.story-text strong{color:var(--charcoal);font-weight:600}
+
+/* WORLD MAP */
+.world-map-wrap{background:var(--white);border-radius:14px;border:1px solid var(--border);padding:28px;box-shadow:var(--shadow)}
+.map-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-grey);margin-bottom:16px}
+.map-svg-wrap{position:relative}
+.map-location{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;padding:12px;border-radius:8px;transition:background .2s;cursor:default}
+.map-location:hover{background:var(--linen)}
+.map-location:last-child{margin-bottom:0}
+.map-dot-wrap{flex-shrink:0;margin-top:3px}
+.map-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--rose)}
+.map-dot.india{background:rgba(181,115,122,0.2)}
+.map-dot.nz{background:var(--rose)}
+.map-dot.nz-active{animation:pulse 2s infinite}
+.map-loc-info{}
+.map-loc-city{font-size:13px;font-weight:600;color:var(--charcoal)}
+.map-loc-roles{font-size:11px;color:var(--warm-grey);line-height:1.6;margin-top:2px}
+.map-journey-line{
+  border-left:2px dashed var(--rose-mid);
+  margin:0 4px 0 4px;height:20px;opacity:0.4;
+}
+.map-flag{font-size:18px;margin-right:4px}
+
+/* NZ EXPERIENCE */
+#nz-exp{background:var(--white)}
+.nz-exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.nz-exp-card{
+  background:var(--linen);border-radius:12px;
+  border:1px solid var(--border);overflow:hidden;
+  transition:all .3s;
+}
+.nz-exp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.nz-card-accent{height:3px;background:linear-gradient(90deg,var(--rose),var(--rose-mid))}
+.nz-card-body{padding:24px}
+.nz-card-dates{font-family:'DM Mono',monospace;font-size:10px;color:var(--rose);letter-spacing:.1em;margin-bottom:8px}
+.nz-card-title{font-size:16px;font-weight:600;color:var(--charcoal);margin-bottom:4px}
+.nz-card-org{font-size:12px;color:var(--warm-grey);font-style:italic;margin-bottom:12px}
+.nz-card-type{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
+.nz-card-desc{font-size:13px;color:var(--text);line-height:1.75}
+
+/* NZ PROJECTS */
+#nz-projects{background:var(--linen)}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.proj-card{background:var(--white);border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:all .3s}
+.proj-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.proj-card.featured{grid-column:1 / -1;display:grid;grid-template-columns:3fr 2fr}
+.proj-accent{height:3px}
+.acc-rose{background:linear-gradient(90deg,var(--rose),var(--rose-mid))}
+.acc-charcoal{background:linear-gradient(90deg,var(--charcoal),var(--warm-grey))}
+.acc-warm{background:linear-gradient(90deg,#8b6f47,#c4a882)}
+.proj-body{padding:26px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.ptag{font-size:9px;font-weight:700;letter-spacing:.07em;padding:3px 8px;border-radius:4px;text-transform:uppercase}
+.ptag-rose{background:var(--rose-light);color:var(--rose)}
+.ptag-dark{background:rgba(45,55,72,0.08);color:var(--charcoal)}
+.ptag-win{background:var(--charcoal);color:var(--white)}
+.proj-title{font-family:'DM Serif Display',serif;font-size:19px;color:var(--charcoal);margin-bottom:5px;line-height:1.2}
+.proj-org{font-size:11px;color:var(--rose);font-weight:600;margin-bottom:10px}
+.proj-desc{font-size:13px;color:var(--warm-grey);line-height:1.75}
+.proj-expand-btn{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:11px;font-weight:600;color:var(--rose);cursor:pointer;background:none;border:none;padding:0;transition:gap .2s}
+.proj-expand-btn:hover{gap:10px}
+.proj-expand-btn svg{transition:transform .3s}
+.proj-expand-btn.open svg{transform:rotate(180deg)}
+.proj-detail{display:none;padding:0 26px 22px;border-top:1px solid var(--border)}
+.proj-detail.open{display:block}
+.detail-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-grey);margin:16px 0 6px;font-weight:500}
+.detail-text{font-size:13px;color:var(--text);line-height:1.75}
+.detail-outputs{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.dout{font-size:11px;background:var(--linen);border:1px solid var(--border);border-radius:4px;padding:3px 8px;color:var(--warm-grey);font-weight:500}
+.proj-visual{background:var(--charcoal-dark);display:flex;align-items:center;justify-content:center;padding:40px;flex-direction:column;gap:14px}
+.proj-visual-num{font-family:'DM Serif Display',serif;font-size:56px;color:var(--rose-mid);line-height:1}
+.proj-visual-label{font-size:11px;color:rgba(255,255,255,0.45);text-align:center;line-height:1.5}
+.proj-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;font-weight:600;color:var(--rose-mid);text-decoration:none;border:1px solid rgba(181,115,122,0.3);padding:7px 14px;border-radius:6px;transition:all .2s}
+.proj-link:hover{background:rgba(181,115,122,0.1)}
+
+/* INDIA */
+#india{background:var(--white)}
+.india-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.role-accordion{background:var(--linen);border-radius:12px;border:1px solid var(--border);overflow:hidden}
+.role-header{padding:22px 26px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s}
+.role-header:hover{background:var(--linen-dark)}
+.role-dates{font-family:'DM Mono',monospace;font-size:10px;color:var(--rose);letter-spacing:.1em;margin-bottom:5px}
+.role-title{font-size:16px;font-weight:600;color:var(--charcoal)}
+.role-org{font-size:12px;color:var(--warm-grey);margin-top:2px;font-style:italic}
+.role-arrow{color:var(--warm-grey);transition:transform .3s;flex-shrink:0}
+.role-arrow.open{transform:rotate(180deg)}
+.role-body{display:none;padding:0 26px 26px;border-top:1px solid var(--border);background:var(--white)}
+.role-body.open{display:block}
+.role-summary{font-size:13px;color:var(--warm-grey);line-height:1.8;margin:18px 0 18px;font-style:italic}
+.resp-section{margin-bottom:18px}
+.resp-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:8px;font-weight:600}
+.resp-text{font-size:13px;color:var(--text);line-height:1.8}
+.role-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:11px;font-weight:500;background:var(--linen);border:1px solid var(--border);border-radius:4px;padding:3px 9px;color:var(--warm-grey)}
+
+/* SKILLS FLIP */
+#skills{background:var(--charcoal-dark)}
+#skills .sec-label{color:var(--rose-mid)}
+#skills .sec-label::before{background:var(--rose-mid)}
+#skills .sec-title{color:var(--white)}
+#skills .sec-sub{color:rgba(255,255,255,0.45)}
+#skills .rule{background:var(--rose-mid)}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.flip-card{height:156px;perspective:1000px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:18px;text-align:center}
+.flip-front{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);flex-direction:column;gap:8px}
+.flip-front:hover{background:rgba(255,255,255,0.09)}
+.flip-icon{font-size:22px}
+.flip-name{font-size:12px;font-weight:600;color:var(--white);line-height:1.3}
+.flip-hint{font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.28);letter-spacing:.1em;margin-top:2px}
+.flip-back{background:var(--rose);transform:rotateY(180deg)}
+.flip-back-text{font-size:11px;color:var(--white);line-height:1.7}
+
+/* TOOLS */
+#tools{background:var(--white)}
+.tools-group{margin-bottom:32px}
+.tools-group:last-child{margin-bottom:0}
+.tools-group-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-grey);margin-bottom:12px}
+.tools-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tool-tag{font-size:12px;font-weight:600;padding:7px 15px;border-radius:7px;color:var(--charcoal);background:var(--linen);border:1px solid var(--linen-dark);box-shadow:0 3px 0 var(--linen-dark),0 4px 6px rgba(45,55,72,0.05);transition:all .15s;cursor:default}
+.tool-tag:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--linen-dark),0 6px 12px rgba(45,55,72,0.1)}
+.tool-tag.highlight{background:var(--rose-light);border-color:var(--rose-mid);box-shadow:0 3px 0 var(--rose-mid),0 4px 6px rgba(181,115,122,0.12);color:var(--rose)}
+.tool-tag.highlight:hover{box-shadow:0 5px 0 var(--rose-mid),0 6px 12px rgba(181,115,122,0.18)}
+
+/* COMMUNITY */
+#community{background:var(--linen)}
+.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.comm-card{background:var(--white);border-radius:12px;border:1px solid var(--border);padding:24px;transition:all .25s}
+.comm-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.comm-icon{font-size:26px;margin-bottom:12px}
+.comm-title{font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:4px}
+.comm-org{font-size:11px;color:var(--rose);font-weight:600;margin-bottom:8px}
+.comm-desc{font-size:12px;color:var(--warm-grey);line-height:1.7}
+
+/* EDUCATION */
+#education{background:var(--white)}
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.edu-card{background:var(--linen);border-radius:12px;border:1px solid var(--border);padding:22px}
+.edu-year{font-family:'DM Mono',monospace;font-size:10px;color:var(--rose);letter-spacing:.1em;margin-bottom:8px}
+.edu-deg{font-family:'DM Serif Display',serif;font-size:16px;color:var(--charcoal);line-height:1.25;margin-bottom:4px}
+.edu-uni{font-size:12px;color:var(--warm-grey);font-style:italic;margin-bottom:10px}
+.edu-note{font-size:11px;color:var(--rose);font-weight:600}
+
+/* CONTACT */
+#contact{background:var(--charcoal-dark);padding:80px 32px}
+.contact-inner{max-width:600px;margin:0 auto;text-align:center}
+.avail-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(181,115,122,0.15);border:1px solid rgba(181,115,122,0.3);border-radius:24px;padding:7px 16px;font-size:11px;font-weight:600;color:var(--rose-mid);margin-bottom:24px}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#68d391;animation:pulse 2s infinite}
+.contact-title{font-family:'DM Serif Display',serif;font-size:42px;color:var(--white);margin-bottom:12px;line-height:1.1}
+.contact-title em{color:var(--rose-mid);font-style:italic}
+.contact-sub{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:36px}
+.contact-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.c-link{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:12px 18px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);text-decoration:none;transition:all .25s}
+.c-link:hover{background:var(--rose);border-color:var(--rose);color:var(--white);transform:translateY(-2px)}
+
+footer{background:#111827;text-align:center;padding:18px 32px;font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:.06em}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.fadein{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.fadein.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  #hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:52px 24px}
+  .hero-name{font-size:40px}
+  .story-wrap{grid-template-columns:1fr}
+  .projects-grid,.nz-exp-grid{grid-template-columns:1fr}
+  .proj-card.featured{grid-template-columns:1fr}
+  .proj-visual{display:none}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .community-grid,.edu-grid{grid-template-columns:1fr}
+  section{padding:56px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- OPEN TO WORK BANNER -->
+<div class="otw-banner">
+  <span class="otw-dot"></span>
+  <span class="otw-text">OPEN TO WORK</span>
+  <span>Available for roles across Wellington and open to relocate anywhere in New Zealand</span>
+  <span class="otw-text"></span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">Shruti <span>Joshi</span></a>
+    <ul class="nav-links">
+      <li><a href="#story">My Chapter</a></li>
+      <li><a href="#nz-exp">NZ Experience</a></li>
+      <li><a href="#nz-projects">What I Built</a></li>
+      <li><a href="#india">Where I Worked</a></li>
+      <li><a href="#skills">How I Think</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="Shruti_Joshi_Resume.pdf" download class="nav-dl">Download CV</a></li>
+      <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-left-inner">
+      <div class="hero-eyebrow">Wellington, New Zealand</div>
+      <h1 class="hero-name">Shruti<em>Joshi</em></h1>
+      <div class="hero-roles">Enterprise Application Support &nbsp;|&nbsp; Technical Consultant &nbsp;|&nbsp; Project Coordinator</div>
+      <p class="hero-tagline">
+        <strong>Calm under complexity. Clear in communication.</strong><br>
+        Adaptable, and ready to contribute in New Zealand.
+      </p>
+      <p class="hero-chance">"I am looking for one chance to prove my capabilities here. I bring real depth, genuine commitment, and everything I have built over a career, to the right opportunity in New Zealand."</p>
+      <div class="hero-buttons">
+        <a href="#nz-projects" class="btn-primary">View my work</a>
+        <a href="mailto:shruti.joshi1605@gmail.com?subject=I saw your portfolio, let's connect" class="btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-awards-wrap">
+      <!-- REPLACE with: <img src="your-photo.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+      <div class="hero-photo"><span>Add your<br>photo here</span></div>
+      <div class="awards-wreath-grid">
+        <div class="wreath-award">
+          <div class="wreath-svg-wrap">
+            <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" class="wreath-svg">
+              <g fill="#c9a96e" opacity="0.9">
+                <ellipse cx="30" cy="80" rx="10" ry="5" transform="rotate(-30 30 80)"/>
+                <ellipse cx="22" cy="65" rx="9" ry="4.5" transform="rotate(-45 22 65)"/>
+                <ellipse cx="20" cy="50" rx="8" ry="4" transform="rotate(-55 20 50)"/>
+                <ellipse cx="25" cy="36" rx="8" ry="4" transform="rotate(-65 25 36)"/>
+                <ellipse cx="34" cy="24" rx="7" ry="3.5" transform="rotate(-75 34 24)"/>
+                <ellipse cx="47" cy="15" rx="7" ry="3.5" transform="rotate(-85 47 15)"/>
+                <ellipse cx="62" cy="10" rx="7" ry="3" transform="rotate(-95 62 10)"/>
+                <ellipse cx="78" cy="8" rx="7" ry="3" transform="rotate(90 78 8)"/>
+                <ellipse cx="190" cy="80" rx="10" ry="5" transform="rotate(30 190 80)"/>
+                <ellipse cx="198" cy="65" rx="9" ry="4.5" transform="rotate(45 198 65)"/>
+                <ellipse cx="200" cy="50" rx="8" ry="4" transform="rotate(55 200 50)"/>
+                <ellipse cx="195" cy="36" rx="8" ry="4" transform="rotate(65 195 36)"/>
+                <ellipse cx="186" cy="24" rx="7" ry="3.5" transform="rotate(75 186 24)"/>
+                <ellipse cx="173" cy="15" rx="7" ry="3.5" transform="rotate(85 173 15)"/>
+                <ellipse cx="158" cy="10" rx="7" ry="3" transform="rotate(95 158 10)"/>
+                <ellipse cx="142" cy="8" rx="7" ry="3" transform="rotate(90 142 8)"/>
+                <ellipse cx="30" cy="95" rx="10" ry="5" transform="rotate(-15 30 95)"/>
+                <ellipse cx="190" cy="95" rx="10" ry="5" transform="rotate(15 190 95)"/>
+                <line x1="90" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+                <line x1="130" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+              </g>
+              <text x="110" y="58" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="3" fill="#c9a96e" font-family="Georgia,serif">&#9733; &#9733; &#9733;</text>
+              <line x1="70" y1="68" x2="150" y2="68" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="88" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">AWARD</text>
+              <line x1="70" y1="96" x2="150" y2="96" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="112" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">AI INNOVATION</text>
+              <text x="110" y="124" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">FIRST PLACE</text>
+            </svg>
+          </div>
+          <div class="wreath-label">AI Innovation Programme</div>
+          <div class="wreath-sub">First Place Overall - VUW 2025<br>Judged by Kiwibank and BDO</div>
+        </div>
+        <div class="wreath-award">
+          <div class="wreath-svg-wrap">
+            <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" class="wreath-svg">
+              <g fill="#c9a96e" opacity="0.9">
+                <ellipse cx="30" cy="80" rx="10" ry="5" transform="rotate(-30 30 80)"/>
+                <ellipse cx="22" cy="65" rx="9" ry="4.5" transform="rotate(-45 22 65)"/>
+                <ellipse cx="20" cy="50" rx="8" ry="4" transform="rotate(-55 20 50)"/>
+                <ellipse cx="25" cy="36" rx="8" ry="4" transform="rotate(-65 25 36)"/>
+                <ellipse cx="34" cy="24" rx="7" ry="3.5" transform="rotate(-75 34 24)"/>
+                <ellipse cx="47" cy="15" rx="7" ry="3.5" transform="rotate(-85 47 15)"/>
+                <ellipse cx="62" cy="10" rx="7" ry="3" transform="rotate(-95 62 10)"/>
+                <ellipse cx="78" cy="8" rx="7" ry="3" transform="rotate(90 78 8)"/>
+                <ellipse cx="190" cy="80" rx="10" ry="5" transform="rotate(30 190 80)"/>
+                <ellipse cx="198" cy="65" rx="9" ry="4.5" transform="rotate(45 198 65)"/>
+                <ellipse cx="200" cy="50" rx="8" ry="4" transform="rotate(55 200 50)"/>
+                <ellipse cx="195" cy="36" rx="8" ry="4" transform="rotate(65 195 36)"/>
+                <ellipse cx="186" cy="24" rx="7" ry="3.5" transform="rotate(75 186 24)"/>
+                <ellipse cx="173" cy="15" rx="7" ry="3.5" transform="rotate(85 173 15)"/>
+                <ellipse cx="158" cy="10" rx="7" ry="3" transform="rotate(95 158 10)"/>
+                <ellipse cx="142" cy="8" rx="7" ry="3" transform="rotate(90 142 8)"/>
+                <ellipse cx="30" cy="95" rx="10" ry="5" transform="rotate(-15 30 95)"/>
+                <ellipse cx="190" cy="95" rx="10" ry="5" transform="rotate(15 190 95)"/>
+                <line x1="90" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+                <line x1="130" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+              </g>
+              <text x="110" y="58" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="3" fill="#c9a96e" font-family="Georgia,serif">&#9733; &#9733; &#9733;</text>
+              <line x1="70" y1="68" x2="150" y2="68" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="88" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">AWARD</text>
+              <line x1="70" y1="96" x2="150" y2="96" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="112" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">3 ON-THE-SPOT</text>
+              <text x="110" y="124" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">TCS AWARDS</text>
+            </svg>
+          </div>
+          <div class="wreath-label">3 On-the-Spot Awards</div>
+          <div class="wreath-sub">Tata Consultancy Services<br>Service and Delivery Excellence</div>
+        </div>
+        <div class="wreath-award">
+          <div class="wreath-svg-wrap">
+            <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" class="wreath-svg">
+              <g fill="#c9a96e" opacity="0.9">
+                <ellipse cx="30" cy="80" rx="10" ry="5" transform="rotate(-30 30 80)"/>
+                <ellipse cx="22" cy="65" rx="9" ry="4.5" transform="rotate(-45 22 65)"/>
+                <ellipse cx="20" cy="50" rx="8" ry="4" transform="rotate(-55 20 50)"/>
+                <ellipse cx="25" cy="36" rx="8" ry="4" transform="rotate(-65 25 36)"/>
+                <ellipse cx="34" cy="24" rx="7" ry="3.5" transform="rotate(-75 34 24)"/>
+                <ellipse cx="47" cy="15" rx="7" ry="3.5" transform="rotate(-85 47 15)"/>
+                <ellipse cx="62" cy="10" rx="7" ry="3" transform="rotate(-95 62 10)"/>
+                <ellipse cx="78" cy="8" rx="7" ry="3" transform="rotate(90 78 8)"/>
+                <ellipse cx="190" cy="80" rx="10" ry="5" transform="rotate(30 190 80)"/>
+                <ellipse cx="198" cy="65" rx="9" ry="4.5" transform="rotate(45 198 65)"/>
+                <ellipse cx="200" cy="50" rx="8" ry="4" transform="rotate(55 200 50)"/>
+                <ellipse cx="195" cy="36" rx="8" ry="4" transform="rotate(65 195 36)"/>
+                <ellipse cx="186" cy="24" rx="7" ry="3.5" transform="rotate(75 186 24)"/>
+                <ellipse cx="173" cy="15" rx="7" ry="3.5" transform="rotate(85 173 15)"/>
+                <ellipse cx="158" cy="10" rx="7" ry="3" transform="rotate(95 158 10)"/>
+                <ellipse cx="142" cy="8" rx="7" ry="3" transform="rotate(90 142 8)"/>
+                <ellipse cx="30" cy="95" rx="10" ry="5" transform="rotate(-15 30 95)"/>
+                <ellipse cx="190" cy="95" rx="10" ry="5" transform="rotate(15 190 95)"/>
+                <line x1="90" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+                <line x1="130" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+              </g>
+              <text x="110" y="58" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="3" fill="#c9a96e" font-family="Georgia,serif">&#9733; &#9733; &#9733;</text>
+              <line x1="70" y1="68" x2="150" y2="68" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="88" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">AWARD</text>
+              <line x1="70" y1="96" x2="150" y2="96" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="112" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">2 BEST PERFORMANCE</text>
+              <text x="110" y="124" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">WESEE AWARDS</text>
+            </svg>
+          </div>
+          <div class="wreath-label">2 Best Performance Awards</div>
+          <div class="wreath-sub">WESEE - Indian Navy<br>CMMI L3 and IBM Integration</div>
+        </div>
+        <div class="wreath-award">
+          <div class="wreath-svg-wrap">
+            <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" class="wreath-svg">
+              <g fill="#c9a96e" opacity="0.9">
+                <ellipse cx="30" cy="80" rx="10" ry="5" transform="rotate(-30 30 80)"/>
+                <ellipse cx="22" cy="65" rx="9" ry="4.5" transform="rotate(-45 22 65)"/>
+                <ellipse cx="20" cy="50" rx="8" ry="4" transform="rotate(-55 20 50)"/>
+                <ellipse cx="25" cy="36" rx="8" ry="4" transform="rotate(-65 25 36)"/>
+                <ellipse cx="34" cy="24" rx="7" ry="3.5" transform="rotate(-75 34 24)"/>
+                <ellipse cx="47" cy="15" rx="7" ry="3.5" transform="rotate(-85 47 15)"/>
+                <ellipse cx="62" cy="10" rx="7" ry="3" transform="rotate(-95 62 10)"/>
+                <ellipse cx="78" cy="8" rx="7" ry="3" transform="rotate(90 78 8)"/>
+                <ellipse cx="190" cy="80" rx="10" ry="5" transform="rotate(30 190 80)"/>
+                <ellipse cx="198" cy="65" rx="9" ry="4.5" transform="rotate(45 198 65)"/>
+                <ellipse cx="200" cy="50" rx="8" ry="4" transform="rotate(55 200 50)"/>
+                <ellipse cx="195" cy="36" rx="8" ry="4" transform="rotate(65 195 36)"/>
+                <ellipse cx="186" cy="24" rx="7" ry="3.5" transform="rotate(75 186 24)"/>
+                <ellipse cx="173" cy="15" rx="7" ry="3.5" transform="rotate(85 173 15)"/>
+                <ellipse cx="158" cy="10" rx="7" ry="3" transform="rotate(95 158 10)"/>
+                <ellipse cx="142" cy="8" rx="7" ry="3" transform="rotate(90 142 8)"/>
+                <ellipse cx="30" cy="95" rx="10" ry="5" transform="rotate(-15 30 95)"/>
+                <ellipse cx="190" cy="95" rx="10" ry="5" transform="rotate(15 190 95)"/>
+                <line x1="90" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+                <line x1="130" y1="148" x2="110" y2="138" stroke="#c9a96e" stroke-width="2"/>
+              </g>
+              <text x="110" y="58" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="3" fill="#c9a96e" font-family="Georgia,serif">&#9733; &#9733; &#9733;</text>
+              <line x1="70" y1="68" x2="150" y2="68" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="88" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">PROMOTED</text>
+              <line x1="70" y1="96" x2="150" y2="96" stroke="#c9a96e" stroke-width="1" opacity="0.6"/>
+              <text x="110" y="112" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">C3A TO C3B GRADE</text>
+              <text x="110" y="124" text-anchor="middle" font-size="8" letter-spacing="2" fill="#c9a96e" font-family="Georgia,serif">IBM ELM CoE</text>
+            </svg>
+          </div>
+          <div class="wreath-label">Promoted C3A to C3B</div>
+          <div class="wreath-sub">Tata Consultancy Services<br>Selected for IBM ELM CoE</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MY CHAPTER -->
+<section id="story">
+  <div class="sec-inner">
+    <div class="sec-label">Background</div>
+    <h2 class="sec-title">My Chapter</h2>
+    <div class="rule"></div>
+    <div class="story-wrap">
+      <div class="story-text fadein">
+        <p>I spent years in India working across three very different worlds. I started as a Technical Consultant in New Delhi, moved into a national defence programme coordinating a combat management system for India's first indigenously built aircraft carrier, and then spent six years at TCS keeping enterprise platforms running for thousands of automotive manufacturing users across Asia Pacific.</p>
+        <p>What those years gave me is hard to summarise in a job title. I learned to sit with people who could not always explain what they needed and help them figure it out. I learned to stay calm when systems broke and thousands of people were waiting. I learned to work across government bodies that did not always agree and find a way to keep things moving.</p>
+        <p>In 2025 I made a deliberate decision. I left a settled career, moved to New Zealand with my family, and completed a Master of Professional Business Analysis at Victoria University of Wellington, passing with Merit in July 2026. Since arriving I have tutored business analysis students at VUW, supported Dress for Success Wellington, and delivered real project work for New Zealand organisations.</p>
+        <p><strong>I am not starting over. I am starting here, with everything I have built, and I am ready to contribute.</strong></p>
+      </div>
+      <div class="fadein">
+        <div class="world-map-wrap">
+          <div class="map-title">Where the journey has taken me</div>
+          <div class="map-location">
+            <div class="map-dot-wrap"><div class="map-dot india"></div></div>
+            <div class="map-loc-info">
+              <div class="map-loc-city"><span class="map-flag">&#127470;&#127475;</span> New Delhi, India</div>
+              <div class="map-loc-roles">Trident Information Systems (2009&ndash;2012)<br>Technical Consultant, IBM Rational and Microsoft CRM</div>
+            </div>
+          </div>
+          <div class="map-journey-line" style="margin-left:4px"></div>
+          <div class="map-location">
+            <div class="map-dot-wrap"><div class="map-dot india"></div></div>
+            <div class="map-loc-info">
+              <div class="map-loc-city"><span class="map-flag">&#127470;&#127475;</span> New Delhi, India</div>
+              <div class="map-loc-roles">WESEE, Indian Navy unit (2012&ndash;2018)<br>Business Analysis, Project Coordination, CMMI L3, MBSE</div>
+            </div>
+          </div>
+          <div class="map-journey-line" style="margin-left:4px"></div>
+          <div class="map-location">
+            <div class="map-dot-wrap"><div class="map-dot india"></div></div>
+            <div class="map-loc-info">
+              <div class="map-loc-city"><span class="map-flag">&#127470;&#127475;</span> Pune, India</div>
+              <div class="map-loc-roles">Tata Consultancy Services (2019&ndash;2025)<br>Enterprise ALM Support, Team Lead, IBM ELM CoE</div>
+            </div>
+          </div>
+          <div class="map-journey-line" style="margin-left:4px;border-color:var(--rose);opacity:0.8"></div>
+          <div class="map-location" style="background:var(--rose-light);border-radius:8px">
+            <div class="map-dot-wrap"><div class="map-dot nz nz-active"></div></div>
+            <div class="map-loc-info">
+              <div class="map-loc-city"><span class="map-flag">&#127475;&#127487;</span> Wellington, New Zealand</div>
+              <div class="map-loc-roles">VUW MBusAn (Pass with Merit, 2026)<br>Tutor, Volunteer, NZ Project Engagements<br><strong style="color:var(--rose);font-size:10px">Open to work - available now</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NZ EXPERIENCE -->
+<section id="nz-exp">
+  <div class="sec-inner">
+    <div class="sec-label">New Zealand</div>
+    <h2 class="sec-title">NZ Experience</h2>
+    <p class="sec-sub">Building my New Zealand career from the ground up, contributing from day one.</p>
+    <div class="rule"></div>
+    <div class="nz-exp-grid">
+
+      <div class="nz-exp-card fadein">
+        <div class="nz-card-accent"></div>
+        <div class="nz-card-body">
+          <div class="nz-card-type">Fixed-Term Contract</div>
+          <div class="nz-card-dates">FEB 2026 &ndash; PRESENT</div>
+          <div class="nz-card-title">Part-Time Tutor</div>
+          <div class="nz-card-org">School of Information Management, Victoria University of Wellington</div>
+          <div class="nz-card-desc">Teaching INFO 203 (Business and Systems Analysis) in trimester 2, helping undergraduate students identify real business problems, understand user needs, and turn those into system requirements using Design Thinking. Taught INFO 101 (Me and My Digital Life) in trimester 1, covering data literacy, cleaning, reporting, and storytelling.</div>
+        </div>
+      </div>
+
+      <div class="nz-exp-card fadein">
+        <div class="nz-card-accent"></div>
+        <div class="nz-card-body">
+          <div class="nz-card-type">Volunteer Role</div>
+          <div class="nz-card-dates">MAR 2026 &ndash; JUL 2026</div>
+          <div class="nz-card-title">HR and Business Support</div>
+          <div class="nz-card-org">Dress for Success Wellington</div>
+          <div class="nz-card-desc">Administered Better Impact CRM and Monday.com to manage the full volunteer lifecycle end to end. Redesigned HR workflows, customised templates, optimised data quality, and applied NZ Privacy Act data practices. Was often the first face people saw when they walked in, making them feel welcome and supported.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I BUILT -->
+<section id="nz-projects">
+  <div class="sec-inner">
+    <div class="sec-label">NZ Project Work</div>
+    <h2 class="sec-title">What I Built</h2>
+    <p class="sec-sub">Four real engagements with New Zealand organisations during my Master of Professional Business Analysis at VUW.</p>
+    <div class="rule"></div>
+    <div class="projects-grid">
+
+      <div class="proj-card featured fadein">
+        <div>
+          <div class="proj-accent acc-rose"></div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="ptag ptag-win">First Place Overall</span>
+              <span class="ptag ptag-rose">AI Governance</span>
+              <span class="ptag ptag-dark">NZ Regulatory</span>
+            </div>
+            <div class="proj-title">DataPriv Enterprise - AI Governance Architecture</div>
+            <div class="proj-org">VUW AI Innovation Programme &middot; Judged by Kiwibank and BDO</div>
+            <div class="proj-desc">Designed a 12-layer, multi-cloud data privacy architecture for professional services firms. Built a working interactive prototype so judges could experience the solution rather than just read about it. Won first place overall.</div>
+            <button class="proj-expand-btn" onclick="toggleProject(this)">
+              See detailed work
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+          </div>
+          <div class="proj-detail">
+            <div class="detail-label">What I Did</div>
+            <div class="detail-text">Designed a complete 12-layer security architecture across six functional zones. Aligned the solution to NZ Privacy Act 2020, AML/CFT Act, and the NZ AI Framework. Built the interactive prototype using Claude AI with working navigation and clickable architecture diagrams. Presented to industry judges from Kiwibank and BDO.</div>
+            <div class="detail-label">Key Outputs</div>
+            <div class="detail-outputs">
+              <span class="dout">12-layer security architecture</span>
+              <span class="dout">Interactive AI prototype</span>
+              <span class="dout">NZ Privacy Act 2020 alignment</span>
+              <span class="dout">Zero Trust access model</span>
+              <span class="dout">Multi-cloud design</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-visual">
+          <div class="proj-visual-num">12</div>
+          <div class="proj-visual-label">Security layers across<br>6 functional zones</div>
+          <a href="DataPriv_Final_Presentation.html" target="_blank" class="proj-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            View Presentation
+          </a>
+        </div>
+      </div>
+
+      <div class="proj-card fadein">
+        <div class="proj-accent acc-charcoal"></div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="ptag ptag-dark">Process Improvement</span>
+            <span class="ptag ptag-rose">NZ Industry</span>
+          </div>
+          <div class="proj-title">Cogo - Process Improvement Engagement</div>
+          <div class="proj-org">NZ Home-Energy Company &middot; VUW Capstone</div>
+          <div class="proj-desc">Mapped the current-state process end to end, found where it was breaking down, designed the improved version using BPMN 2.0, and built a simulated To-Be demonstration so the client could see exactly what the new process would look like.</div>
+          <button class="proj-expand-btn" onclick="toggleProject(this)">
+            See detailed work
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+        <div class="proj-detail">
+          <div class="detail-label">Approach</div>
+          <div class="detail-text">Stakeholder workshops to understand the current experience. As-Is process mapping using BPMN 2.0. Gap analysis to identify where things were breaking down. To-Be process design. Simulated demonstration built and presented to the client.</div>
+          <div class="detail-label">Key Outputs</div>
+          <div class="detail-outputs">
+            <span class="dout">As-Is BPMN 2.0 maps</span>
+            <span class="dout">To-Be process design</span>
+            <span class="dout">Simulated demonstration</span>
+            <span class="dout">Gap analysis report</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card fadein">
+        <div class="proj-accent acc-warm"></div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="ptag ptag-dark">Enterprise Architecture</span>
+            <span class="ptag ptag-rose">Healthcare</span>
+          </div>
+          <div class="proj-title">Malagan Institute - Data Governance</div>
+          <div class="proj-org">NZ Healthcare Organisation &middot; VUW Engagement</div>
+          <div class="proj-desc">Used TOGAF and ArchiMate to map data governance challenges across departments and produce As-Is and To-Be architecture models. Delivered recommendations for how the organisation should manage and own its information.</div>
+          <button class="proj-expand-btn" onclick="toggleProject(this)">
+            See detailed work
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+        <div class="proj-detail">
+          <div class="detail-label">Approach</div>
+          <div class="detail-text">TOGAF ADM framework applied to structure the analysis. ArchiMate As-Is models built to show the current situation. To-Be models produced to show the recommended future state. Recommendations report delivered to stakeholders.</div>
+          <div class="detail-label">Key Outputs</div>
+          <div class="detail-outputs">
+            <span class="dout">ArchiMate As-Is models</span>
+            <span class="dout">ArchiMate To-Be models</span>
+            <span class="dout">Data governance recommendations</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHERE I WORKED -->
+<section id="india">
+  <div class="sec-inner">
+    <div class="sec-label">India Experience</div>
+    <h2 class="sec-title">Where I Worked</h2>
+    <p class="sec-sub">Years of enterprise delivery across three very different environments. Click each role to see what I actually did.</p>
+    <div class="rule"></div>
+    <div class="india-grid">
+
+      <div class="role-accordion fadein">
+        <div class="role-header" onclick="toggleRole(this)">
+          <div class="role-left">
+            <div class="role-dates">JAN 2019 &ndash; JAN 2025</div>
+            <div class="role-title">Associate Consultant / Team Leader (C3B)</div>
+            <div class="role-org">Tata Consultancy Services (TCS), Pune - Automotive Manufacturing Client</div>
+          </div>
+          <svg class="role-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="role-body">
+          <div class="role-summary">Six years as the first call when enterprise systems broke for 3,000 APAC users across an automotive manufacturing client. Zero SLA breaches. Led a team of five. Promoted from C3A to C3B and selected for the IBM ELM Centre of Excellence. Won three On-the-Spot Awards.</div>
+          <div class="resp-section">
+            <div class="resp-label">Application Support (L2 and L3)</div>
+            <div class="resp-text">When JIRA, Polarion, or PlasticSCM went down I was the first call. All three ran on Linux servers. I logged in, checked which cluster node the user was on, pulled heap dumps and application logs, found the root cause, and got things back online. Six years, zero SLA breaches. Also reviewed recurring incidents proactively, found patterns, and put fixes in place so they stopped coming back.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">Platform Administration</div>
+            <div class="resp-text">Administered JIRA Server for 3,000 users including workflow configuration, form setup, user permissions, and version upgrades. Maintained the Polarion to JIRA integration. Administered PlasticSCM. Managed all three applications in a Linux cluster environment.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">Team Leadership and Agile Delivery</div>
+            <div class="resp-text">Led a team of five application support engineers. Ran sprint planning, story-point estimation, onboarding, mentoring, and performance reviews. Managed vendor relationships with Siemens, Codice, and Atlassian. Sent bi-weekly status reports to APAC stakeholders.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">IBM ELM Centre of Excellence</div>
+            <div class="resp-text">Selected after promotion to contribute to TCS's IBM Engineering Lifecycle Management Centre of Excellence. Created Proof of Concept environments to demonstrate IBM ELM solutions to potential clients. Translated client requirements into working tool configurations for pre-sales demonstrations.</div>
+          </div>
+          <div class="role-chips">
+            <span class="chip">JIRA Server</span><span class="chip">Polarion</span><span class="chip">PlasticSCM</span>
+            <span class="chip">ServiceNow ITIL</span><span class="chip">Linux servers</span><span class="chip">Agile</span>
+            <span class="chip">IBM ELM CoE</span><span class="chip">3 On-the-Spot Awards</span><span class="chip">Promoted C3A to C3B</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="role-accordion fadein">
+        <div class="role-header" onclick="toggleRole(this)">
+          <div class="role-left">
+            <div class="role-dates">2012 &ndash; 2018</div>
+            <div class="role-title">Senior Software Engineer</div>
+            <div class="role-org">WESEE, Indian Navy unit, New Delhi - INS Vikrant Combat Management System</div>
+          </div>
+          <svg class="role-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="role-body">
+          <div class="role-summary">Six years on India's first indigenous aircraft carrier programme. Hybrid role covering business analysis, project coordination, change management, configuration management, CMMI Level 3 compliance ownership, and MBSE alongside IBM Global Business Services. Two Best Performance Awards for CMMI process mapping workshops and IBM Rational tool integration.</div>
+          <div class="resp-section">
+            <div class="resp-label">Business Analysis and Requirements</div>
+            <div class="resp-text">Sat directly with Indian Navy personnel to understand how specific system functions needed to work. Translated those conversations into developer-ready specifications, separating functional from non-functional requirements and including example data and expected outputs. Produced TOGAF ADM deliverables across Phases A to D.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">Project Coordination</div>
+            <div class="resp-text">Created the Project Management Plan, produced WBS and risk registers using Use Case Points (UCP) method and Affinity Mapping. Coordinated Software Change Proposal meetings across three government stakeholders (IN Navy, TPSED, DB Systems). Kept meeting minutes and all project documentation. Made sure timelines did not slip.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">Configuration Management and Multi-location Build</div>
+            <div class="resp-text">Administered the full IBM Rational toolchain on Linux servers including IBM CALM 6.0, Rhapsody, ClearCase, ClearQuest, and JAZZ Build Server. Designed and ran the multi-location auto-build process across Delhi, Mumbai, and Bangalore using Jazz Build Engine and ANT scripting. Generated executables from Rhapsody models.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">CMMI Level 3 Compliance</div>
+            <div class="resp-text">Owned CMMI Level 3 compliance for the entire project. Ran monthly internal audits and facilitated quarterly external audits with zero findings across six years. Facilitated CMMI process mapping workshops and gap analysis. Received two Best Performance Awards for this work.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">Model-Based Systems Engineering (MBSE)</div>
+            <div class="resp-text">Specifically appointed to work alongside IBM Global Business Services consultants for full MBSE model creation. Applied the Rhapsody Harmony methodology (Peter Hoffmann). Produced UML models, FIDs, and state, panel and sequence diagrams. Unit-test cases simulated in the model before any code was written.</div>
+          </div>
+          <div class="role-chips">
+            <span class="chip">IBM CALM 6.0</span><span class="chip">Rhapsody</span><span class="chip">ClearCase</span>
+            <span class="chip">ClearQuest</span><span class="chip">TOGAF ADM</span><span class="chip">CMMI Level 3</span>
+            <span class="chip">MBSE</span><span class="chip">2 Best Performance Awards</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="role-accordion fadein">
+        <div class="role-header" onclick="toggleRole(this)">
+          <div class="role-left">
+            <div class="role-dates">2009 &ndash; 2012</div>
+            <div class="role-title">Technical Consultant</div>
+            <div class="role-org">Trident Information Systems, New Delhi</div>
+          </div>
+          <svg class="role-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="role-body">
+          <div class="role-summary">Started in pre-sales for Microsoft Dynamics CRM before moving internally to IBM Rational implementation for central government clients. Obtained IBM RQM certification.</div>
+          <div class="resp-section">
+            <div class="resp-label">Phase 1: Microsoft Dynamics CRM (approx. 6 months)</div>
+            <div class="resp-text">Pre-sales team for Microsoft Dynamics CRM. Created Proof of Concept environments for potential clients. Supported existing clients with CRM administration, user management, and workflow configuration.</div>
+          </div>
+          <div class="resp-section">
+            <div class="resp-label">Phase 2: IBM Rational Pre-Sales and Implementation</div>
+            <div class="resp-text">Moved internally to IBM Rational pre-sales and implementation. Worked with central government agency clients to understand requirements and design IBM Rational toolchain solutions. Created PoC environments, configured tools, delivered training, and managed the full implementation to handover. Trained the internal Trident team on IBM Rational tools. Obtained IBM RQM certification.</div>
+          </div>
+          <div class="role-chips">
+            <span class="chip">Microsoft Dynamics CRM 4.0</span><span class="chip">IBM Rational Team Concert</span>
+            <span class="chip">ClearCase</span><span class="chip">ClearQuest</span><span class="chip">IBM RQM Certified</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW I THINK -->
+<section id="skills">
+  <div class="sec-inner">
+    <div class="sec-label">Core Expertise</div>
+    <h2 class="sec-title">How I Think</h2>
+    <p class="sec-sub">Tap any card to see a real example from my work.</p>
+    <div class="rule"></div>
+    <div class="skills-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#128269;</div><div class="flip-name">Requirements Analysis</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">Sat with Indian Navy officers, understood complex system functions, and wrote developer-ready specs separating functional from non-functional requirements with example data and expected outputs.</div></div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#128260;</div><div class="flip-name">Process Improvement</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">At Cogo, mapped the current-state process step by step, found where it was failing, designed the improved version in BPMN 2.0, and built a simulated To-Be demonstration so the client could see it before anything changed.</div></div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#127963;</div><div class="flip-name">Enterprise Architecture</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">Used TOGAF and ArchiMate to map data governance challenges at Malagan Institute, producing As-Is and To-Be architecture models. Also delivered TOGAF Phases A to D for the INS Vikrant programme.</div></div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#129529;</div><div class="flip-name">Stakeholder Engagement</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">Kept three government bodies (IN Navy, TPSED, DB Systems) aligned across six years on the INS Vikrant project. Facilitated Software Change Proposal meetings with stakeholders who did not always agree.</div></div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#9881;&#65039;</div><div class="flip-name">Problem Solving</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">At TCS when systems went down for 3,000 users, checked cluster nodes, pulled heap dumps and application logs, found the root cause, and fixed it so it stopped coming back. Zero SLA breaches across six years.</div></div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#127912;</div><div class="flip-name">Design Thinking</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">At Cogo, started by understanding the client's actual experience before defining the problem. At Dress for Success, understood how volunteers experienced the process before redesigning it. Now teaches Design Thinking at VUW.</div></div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#9989;</div><div class="flip-name">Quality and Compliance</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">Owned CMMI Level 3 compliance at WESEE for six years. Ran monthly internal audits and quarterly external audits. Zero findings across six years. Two Best Performance Awards for CMMI process mapping workshops.</div></div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front"><div class="flip-icon">&#127758;</div><div class="flip-name">Adaptability</div><div class="flip-hint">tap to see example</div></div>
+          <div class="flip-back"><div class="flip-back-text">Left a settled career in India, moved to New Zealand with my family, completed a Master's with Merit, tutored at VUW, volunteered at Dress for Success Wellington, and won first place at the VUW AI Innovation Programme.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLKIT -->
+<section id="tools">
+  <div class="sec-inner">
+    <div class="sec-label">Technologies</div>
+    <h2 class="sec-title">My Toolkit</h2>
+    <p class="sec-sub">Tools and platforms across enterprise delivery, business analysis, and systems administration.</p>
+    <div class="rule"></div>
+    <div class="tools-group">
+      <div class="tools-group-label">ALM and Systems Administration</div>
+      <div class="tools-tags">
+        <span class="tool-tag highlight">JIRA Server</span>
+        <span class="tool-tag highlight">Polarion</span>
+        <span class="tool-tag highlight">IBM CALM 6.0</span>
+        <span class="tool-tag">IBM Rhapsody</span>
+        <span class="tool-tag">ClearCase</span>
+        <span class="tool-tag">ClearQuest</span>
+        <span class="tool-tag">JAZZ Build Server</span>
+        <span class="tool-tag">PlasticSCM</span>
+        <span class="tool-tag">Synergy</span>
+        <span class="tool-tag">ANT Scripting</span>
+        <span class="tool-tag">Linux Servers</span>
+      </div>
+    </div>
+    <div class="tools-group">
+      <div class="tools-group-label">Service Management</div>
+      <div class="tools-tags">
+        <span class="tool-tag highlight">ServiceNow</span>
+        <span class="tool-tag">ITIL Incident Management</span>
+        <span class="tool-tag">Change Management</span>
+        <span class="tool-tag">SLA Management</span>
+      </div>
+    </div>
+    <div class="tools-group">
+      <div class="tools-group-label">Modelling and Analysis</div>
+      <div class="tools-tags">
+        <span class="tool-tag highlight">BPMN 2.0</span>
+        <span class="tool-tag highlight">ArchiMate</span>
+        <span class="tool-tag">UML</span>
+        <span class="tool-tag">Lucidchart</span>
+        <span class="tool-tag">Miro</span>
+        <span class="tool-tag">As-Is to To-Be Mapping</span>
+      </div>
+    </div>
+    <div class="tools-group">
+      <div class="tools-group-label">Frameworks and Methodologies</div>
+      <div class="tools-tags">
+        <span class="tool-tag highlight">TOGAF ADM</span>
+        <span class="tool-tag highlight">CMMI Level 3</span>
+        <span class="tool-tag">Design Thinking</span>
+        <span class="tool-tag">Agile Delivery</span>
+        <span class="tool-tag">ITIL</span>
+        <span class="tool-tag">SDLC</span>
+        <span class="tool-tag">MBSE</span>
+      </div>
+    </div>
+    <div class="tools-group">
+      <div class="tools-group-label">CRM and Business Tools</div>
+      <div class="tools-tags">
+        <span class="tool-tag highlight">Better Impact CRM</span>
+        <span class="tool-tag">Monday.com</span>
+        <span class="tool-tag">Microsoft Dynamics CRM 4.0</span>
+        <span class="tool-tag">Microsoft Office</span>
+        <span class="tool-tag">Confluence</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVING BACK -->
+<section id="community">
+  <div class="sec-inner">
+    <div class="sec-label">Community</div>
+    <h2 class="sec-title">Giving Back</h2>
+    <p class="sec-sub">Contributing to Wellington and the professional community since arriving in New Zealand.</p>
+    <div class="rule"></div>
+    <div class="community-grid">
+      <div class="comm-card fadein">
+        <div class="comm-icon">&#128202;</div>
+        <div class="comm-title">Event Organiser and Volunteer</div>
+        <div class="comm-org">BA Career Meetup Wellington</div>
+        <div class="comm-desc">Helped coordinate and volunteer at BA Career events connecting MBusAn students with Wellington industry professionals and alumni. 2025.</div>
+      </div>
+      <div class="comm-card fadein">
+        <div class="comm-icon">&#127758;</div>
+        <div class="comm-title">IIBA NZ Chapter Volunteer</div>
+        <div class="comm-org">IIBA Wellington Branch</div>
+        <div class="comm-desc">Active volunteer member of the IIBA New Zealand Wellington Branch, contributing to the local business analysis professional community.</div>
+      </div>
+      <div class="comm-card fadein">
+        <div class="comm-icon">&#128209;</div>
+        <div class="comm-title">Ako in Action Student Partner</div>
+        <div class="comm-org">Victoria University of Wellington</div>
+        <div class="comm-desc">Partnered with VUW academics to observe teaching, provide honest feedback, and recommend improvements to course and learning design. 2025 to 2026.</div>
+      </div>
+      <div class="comm-card fadein">
+        <div class="comm-icon">&#127775;</div>
+        <div class="comm-title">Wellington International Leadership Programme</div>
+        <div class="comm-org">Wellington, New Zealand</div>
+        <div class="comm-desc">Completed the Wellington International Leadership Programme, developing leadership capabilities through a structured programme. Certificate awarded 2025.</div>
+      </div>
+      <div class="comm-card fadein">
+        <div class="comm-icon">&#127979;</div>
+        <div class="comm-title">Career Expo Volunteer</div>
+        <div class="comm-org">Victoria University of Wellington</div>
+        <div class="comm-desc">Supported VUW career expos, helping students navigate opportunities and connect with the Wellington professional community. 2025 to 2026.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sec-inner">
+    <div class="sec-label">Qualifications</div>
+    <h2 class="sec-title">The Learning Never Stops</h2>
+    <div class="rule"></div>
+    <div class="edu-grid fadein">
+      <div class="edu-card">
+        <div class="edu-year">2025 &ndash; 2026</div>
+        <div class="edu-deg">Master of Professional Business Analysis</div>
+        <div class="edu-uni">Victoria University of Wellington</div>
+        <div class="edu-note">Pass with Merit &middot; July 2026</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2006 &ndash; 2009</div>
+        <div class="edu-deg">Master of Business Administration</div>
+        <div class="edu-uni">Amity Business School, India</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2002 &ndash; 2006</div>
+        <div class="edu-deg">Bachelor of Engineering, Information Technology</div>
+        <div class="edu-uni">Rajasthan University, Jaipur, India</div>
+      </div>
+    </div>
+    <div style="margin-top:36px">
+      <div class="tools-group-label" style="margin-bottom:14px">Certifications and In Progress</div>
+      <div class="tools-tags">
+        <span class="tool-tag highlight">IBM RQM Certified</span>
+        <span class="tool-tag" style="border-style:dashed">Salesforce Administrator - In Progress</span>
+        <span class="tool-tag" style="border-style:dashed">Microsoft Power Platform Fundamentals - In Progress</span>
+      </div>
+      <p style="font-size:11px;color:var(--warm-grey);margin-top:10px;font-family:'DM Mono',monospace;letter-spacing:.04em">Currently exploring Salesforce Administrator certification and Microsoft Power Platform fundamentals to build on my enterprise CRM and application support background.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="avail-badge">
+      <span class="avail-dot"></span>
+      Available for opportunities across New Zealand
+    </div>
+    <h2 class="contact-title">Let's <em>work together</em></h2>
+    <p class="contact-sub">Open to Enterprise Application Support, Business Analysis, Project Coordination, and Technical Consultant roles across New Zealand. Open to relocate anywhere in New Zealand. Happy to have a conversation.</p>
+    <div class="contact-links">
+      <a href="mailto:shruti.joshi1605@gmail.com?subject=I saw your portfolio, let's connect" class="c-link">
+        <span>&#9993;</span> shruti.joshi1605@gmail.com
+      </a>
+      <a href="tel:+6402102420090" class="c-link">
+        <span>&#128222;</span> +64 021 024 20090
+      </a>
+      <a href="https://linkedin.com/in/joshishruti1605" target="_blank" class="c-link">
+        <span>&#128188;</span> LinkedIn Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>Shruti Joshi &middot; Wellington, New Zealand &middot; 2026</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fadein').forEach(el => io.observe(el));
+
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 70) cur = s.id; });
+  navAs.forEach(a => {
+    const href = a.getAttribute('href').replace('#','');
+    a.style.color = href === cur ? 'var(--charcoal)' : '';
+    a.style.background = href === cur ? 'var(--linen)' : '';
+  });
+});
+
+function toggleProject(btn) {
+  const detail = btn.closest('.proj-body').nextElementSibling;
+  detail.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.childNodes[0].textContent = detail.classList.contains('open') ? 'Hide detail ' : 'See detailed work ';
+}
+
+function toggleRole(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.role-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+</script>
+</body>
+</html>
